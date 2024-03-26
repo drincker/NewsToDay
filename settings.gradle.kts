@@ -21,4 +21,6 @@ dependencyResolutionManagement {
 
 rootProject.name = "NewsToDay"
 include(":app")
- 
+include(":core:domain:newsapi:api")
+include(":core:domain:newsapi:impl")
+include(":core:domain:newsapi:di")
