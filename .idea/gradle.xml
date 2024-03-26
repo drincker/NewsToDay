@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
@@ -15,6 +16,11 @@
             <option value="$PROJECT_DIR$/core/domain/newsapi/api" />
             <option value="$PROJECT_DIR$/core/domain/newsapi/di" />
             <option value="$PROJECT_DIR$/core/domain/newsapi/impl" />
+            <option value="$PROJECT_DIR$/features" />
+            <option value="$PROJECT_DIR$/features/article" />
+            <option value="$PROJECT_DIR$/features/article/api" />
+            <option value="$PROJECT_DIR$/features/article/di" />
+            <option value="$PROJECT_DIR$/features/article/impl" />
           </set>
         </option>
         <option name="resolveExternalAnnotations" value="false" />
