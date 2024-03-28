@@ -21,15 +21,15 @@ android {
 
     buildTypes {
         defaultConfig {
-            buildConfigField("string", "NEWS_API_KEY", "b99e497649384d459634680b3a71a0ff")
+            buildConfigField("String", "NEWS_API_KEY", "\"b99e497649384d459634680b3a71a0ff\"")
         }
 
         debug {
-            buildConfigField("string", "NEWS_API_KEY", "b99e497649384d459634680b3a71a0ff")
+            buildConfigField("String", "NEWS_API_KEY", "\"b99e497649384d459634680b3a71a0ff\"")
         }
 
         release {
-            buildConfigField("string", "NEWS_API_KEY", "b99e497649384d459634680b3a71a0ff")
+            buildConfigField("String", "NEWS_API_KEY", "\"b99e497649384d459634680b3a71a0ff\"")
 
             isMinifyEnabled = false
             proguardFiles(
@@ -59,6 +59,7 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
+    implementation(project(":core:data:appconfig:api"))
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

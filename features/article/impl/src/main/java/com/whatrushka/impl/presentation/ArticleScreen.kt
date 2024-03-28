@@ -50,7 +50,7 @@ fun ArticleScreenPreview() {
             url = "https://google.com/",
             urlToImage = "https://mykaleidoscope.ru/x/uploads/posts/2022-10/1666389897_62-mykaleidoscope-ru-p-klassnaya-priroda-oboi-67.jpg",
             publishedAt = "2024-22-03",
-            content = "hallo everynyon"
+            content = loremIpsum
         )
     )
 }
@@ -60,15 +60,18 @@ fun ArticleScreen(
     article: Article,
     modifier: Modifier = Modifier
 ) {
+    val scrollState = rememberScrollState()
+
     Column(
         Modifier
+            .verticalScroll(scrollState)
             .fillMaxSize()
             .background(Color(0xFFFFFFFF))
     ) {
         Box(
-            modifier = Modifier
+            Modifier
                 .fillMaxWidth()
-                .fillMaxHeight(0.45f)
+                .height(310.dp)
         ) {
             AsyncImage(
                 contentDescription = null,
@@ -79,10 +82,10 @@ fun ArticleScreen(
             )
 
             Box(
-                modifier = Modifier
+                Modifier
                     .fillMaxSize()
                     .background(
-                        brush = Brush.verticalGradient(
+                        Brush.verticalGradient(
                             colors = listOf(
                                 Color(0x00FFFFFF),
                                 Color(0x46000000),
@@ -105,19 +108,19 @@ fun ArticleScreen(
                     Icon(
                         contentDescription = null,
                         imageVector = ImageVector.vectorResource(R.drawable.icon_arrow_back),
-                        modifier = Modifier.size(30.dp)
+                        modifier = Modifier.size(25.dp)
                     )
                     Column {
                         Icon(
                             contentDescription = null,
                             imageVector = ImageVector.vectorResource(R.drawable.icon_bookmark),
-                            modifier = Modifier.size(30.dp)
+                            modifier = Modifier.size(25.dp)
                         )
                         Spacer(modifier = Modifier.height(20.dp))
                         Icon(
                             contentDescription = null,
                             imageVector = ImageVector.vectorResource(R.drawable.icon_arrow_share),
-                            modifier = Modifier.size(30.dp)
+                            modifier = Modifier.size(25.dp)
                         )
                     }
                 }
@@ -126,8 +129,8 @@ fun ArticleScreen(
                     Text(article.title,
                         style = TextStyle(
                             color = Color.White,
-                            fontSize = 28.sp,
-                            fontWeight = FontWeight.Bold
+                            fontSize = 24.sp,
+                            fontWeight = FontWeight.SemiBold
                         )
                     )
                     Spacer(modifier = Modifier.padding(12.dp))
@@ -135,8 +138,8 @@ fun ArticleScreen(
                         Text(article.author,
                             style = TextStyle(
                                 color = Color.White,
-                                fontSize = 22.sp,
-                                fontWeight = FontWeight.SemiBold
+                                fontSize = 20.sp,
+                                fontWeight = FontWeight.Medium
                             )
                         )
                         Text("Author",
@@ -151,26 +154,23 @@ fun ArticleScreen(
             }
         }
 
-        val scrollState = rememberScrollState()
         Column(
-            modifier = modifier
-                .fillMaxSize()
-                .verticalScroll(scrollState)
+            modifier = modifier.fillMaxSize()
         ) {
             Text(article.description,
                 style = TextStyle(
                     color = Color.Black,
-                    fontSize = 24.sp,
-                    fontWeight = FontWeight.SemiBold
+                    fontSize = 20.sp,
+                    fontWeight = FontWeight.Medium
                 )
             )
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(16.dp))
             Text(
-                loremIpsum,
+                article.content,
                 style = TextStyle(
-                    color = Color.Black,
+                    color = Color(0xFF666C8E),
                     fontSize = 16.sp,
-                    fontWeight = FontWeight.Medium
+                    fontWeight = FontWeight.Normal
                 )
             )
         }

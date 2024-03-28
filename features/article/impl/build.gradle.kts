@@ -34,6 +34,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.10"
@@ -47,6 +48,7 @@ android {
 
 dependencies {
     implementation(project(":core:domain:newsapi:api"))
+    implementation(project(":core:ui"))
 
     implementation(libs.coil.compose)
 

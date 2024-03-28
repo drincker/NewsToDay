@@ -6,11 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.whatrushka.impl.presentation.ArticleScreenPreview
 import pl.drincker.newstoday.ui.theme.NewsToDayTheme
 
 class MainActivity : ComponentActivity() {
@@ -23,9 +19,19 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-
-                    ArticleScreenPreview()
-
+//                    val appConfigDataStore: AppConfigService = koinInject()
+//
+//                    LaunchedEffect(null) {
+//                        var config = appConfigDataStore.getAppConfig()
+//                        Log.d("m", "config: $config")
+//
+//                        appConfigDataStore.updateAppConfig(
+//                            language = Language.EN
+//                        )
+//                        delay(1000)
+//                        config = appConfigDataStore.getAppConfig()
+//                        Log.d("m", "updated config: $config")
+//                    }
                 }
             }
         }

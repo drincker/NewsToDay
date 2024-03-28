@@ -50,7 +50,11 @@ android {
 }
 
 dependencies {
-    implementation(project(":features:article:impl"))
+    implementation(project(":core:data:appconfig:di"))
+    implementation(project(":core:domain:newsapi:api"))
+    implementation(project(":core:domain:newsapi:di"))
+
+    implementation(libs.koin.androidx.compose)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
