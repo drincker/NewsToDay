@@ -1,15 +1,11 @@
 package com.whatrushka.impl.presentation
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.gestures.Orientation
-import androidx.compose.foundation.gestures.rememberScrollableState
-import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -35,6 +31,8 @@ import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.whatrushka.api.models.Article
 import com.whatrushka.api.models.Source
+import com.whatrushka.ui.theme.NewsToDayType
+import com.whatrushka.ui.theme.SecondaryGrey
 import pl.drincker.newstoday.R
 
 @Preview
@@ -76,7 +74,7 @@ fun ArticleScreen(
             AsyncImage(
                 contentDescription = null,
                 model = article.urlToImage,
-                placeholder = painterResource(R.drawable.image_placeholder),
+                placeholder = painterResource(R.drawable.icon_bookmark),
                 contentScale = ContentScale.Crop,
                 modifier = Modifier.fillMaxSize()
             )
@@ -127,27 +125,18 @@ fun ArticleScreen(
 
                 Column {
                     Text(article.title,
-                        style = TextStyle(
-                            color = Color.White,
-                            fontSize = 24.sp,
-                            fontWeight = FontWeight.SemiBold
-                        )
+                        color = Color.White,
+                        style = NewsToDayType.NewDescFull
                     )
                     Spacer(modifier = Modifier.padding(12.dp))
                     Column {
                         Text(article.author,
-                            style = TextStyle(
-                                color = Color.White,
-                                fontSize = 20.sp,
-                                fontWeight = FontWeight.Medium
-                            )
+                            color = Color.White,
+                            style = NewsToDayType.SemiCommon
                         )
                         Text("Author",
-                            style = TextStyle(
-                                color = Color.LightGray,
-                                fontSize = 18.sp,
-                                fontWeight = FontWeight.Normal
-                            )
+                            color = SecondaryGrey,
+                            style = NewsToDayType.SemiLight
                         )
                     }
                 }

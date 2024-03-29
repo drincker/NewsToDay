@@ -19,14 +19,14 @@ fun ScreenAppBar(
     Column {
         Text(text = title,
             color = PrimaryBlue,
-            style = NewsToDayType.titleMedium
+            style = NewsToDayType.TitleLarge
         )
 
         description?.let {
             Spacer(modifier = Modifier.height(8.dp))
             Text(text = it,
                 color = SecondaryGrey,
-                style = NewsToDayType.bodySmall
+                style = NewsToDayType.Common
             )
         }
     }

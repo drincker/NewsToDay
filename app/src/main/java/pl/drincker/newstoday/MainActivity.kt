@@ -7,6 +7,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
+import com.whatrushka.impl.presentation.HomeScreen
+import org.koin.android.ext.android.get
 import pl.drincker.newstoday.ui.theme.NewsToDayTheme
 
 class MainActivity : ComponentActivity() {
@@ -19,19 +21,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-//                    val appConfigDataStore: AppConfigService = koinInject()
-//
-//                    LaunchedEffect(null) {
-//                        var config = appConfigDataStore.getAppConfig()
-//                        Log.d("m", "config: $config")
-//
-//                        appConfigDataStore.updateAppConfig(
-//                            language = Language.EN
-//                        )
-//                        delay(1000)
-//                        config = appConfigDataStore.getAppConfig()
-//                        Log.d("m", "updated config: $config")
-//                    }
+                    HomeScreen(get(), get(), Modifier.fillMaxSize())
                 }
             }
         }

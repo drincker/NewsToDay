@@ -50,9 +50,12 @@ android {
 }
 
 dependencies {
-    implementation(project(":core:data:appconfig:di"))
-    implementation(project(":core:domain:newsapi:api"))
+    implementation(project(":core:data:di"))
     implementation(project(":core:domain:newsapi:di"))
+    implementation(project(":features:home:di"))
+
+    implementation(project(":features:home:impl"))
+    implementation(project(":features:home:api"))
 
     implementation(libs.koin.androidx.compose)
 

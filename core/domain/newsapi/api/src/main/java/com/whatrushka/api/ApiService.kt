@@ -7,8 +7,11 @@ import com.whatrushka.api.models.static.Language
 interface ApiService {
 
     suspend fun getTopHeadlines(
+        q: String? = null,
         language: Language = Language.RU,
         category: Category? = null,
+        page: Int = 1,
+        pageSize: Int = 10
     ): NewsResponse
 
     suspend fun getNews(

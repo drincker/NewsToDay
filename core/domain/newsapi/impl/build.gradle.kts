@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.whatrushka.impl"
+    namespace = "com.whatrushka.core.domain.newsapi.impl"
     compileSdk = 34
 
     defaultConfig {
@@ -48,8 +48,6 @@ android {
 }
 
 dependencies {
-    implementation(project(":core:domain:newsapi:api"))
-
     implementation(libs.ktor.client.cio)
     implementation(libs.ktor.client.core)
     implementation(libs.ktor.client.content.negotiation)
@@ -59,7 +57,8 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
-    implementation(project(":core:data:appconfig:api"))
+    implementation(project(":core:data:api"))
+    implementation(project(":core:domain:newsapi:api"))
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

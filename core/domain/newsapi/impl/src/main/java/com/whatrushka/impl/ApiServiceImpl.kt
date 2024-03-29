@@ -18,7 +18,7 @@ class ApiServiceImpl(
     companion object {
         private const val API = "https://newsapi.org/v2"
         private const val EVERYTHING = "$API/everything"
-        private const val TOP_HEADLINES = "$API/top-headlines/sources"
+        private const val TOP_HEADLINES = "$API/top-headlines"
     }
 
     override suspend fun getNews(
@@ -37,13 +37,19 @@ class ApiServiceImpl(
     }.body<NewsResponse>()
 
     override suspend fun getTopHeadlines(
+        q: String?,
         language: Language,
         category: Category?,
+        page: Int,
+        pageSize: Int
     ) = client.get(TOP_HEADLINES) {
         url.parameters.apply {
             append("apiKey", apiKey)
+            q?.let { append("q", it) }
             append(Language.ApiName, language.name)
             category?.let { append(Category.ApiName, it.name) }
+            append("page", page.toString())
+            append("pageSize", pageSize.toString())
         }
     }.body<NewsResponse>()
 }

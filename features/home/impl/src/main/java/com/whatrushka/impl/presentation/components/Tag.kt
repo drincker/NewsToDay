@@ -1,5 +1,6 @@
 package com.whatrushka.impl.presentation.components
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -12,18 +13,24 @@ import androidx.compose.ui.text.capitalize
 import androidx.compose.ui.unit.dp
 import com.whatrushka.api.models.static.Category
 import com.whatrushka.ui.theme.NewsToDayType
+import com.whatrushka.ui.theme.PrimaryBlue
 import java.util.Locale
 
 @Composable
-fun Tag(category: Category) {
+fun Tag(
+    category: Category,
+    selected: Boolean,
+    onClick: (Category) -> Unit
+) {
     Box(
         Modifier
+            .background(PrimaryBlue)
             .padding(8.dp)
             .clip(RoundedCornerShape(15.dp))
     ) {
         Text(category.name.replaceFirstChar { it.uppercaseChar() },
             color = Color.White,
-            style = NewsToDayType.bodySmall
+            style = NewsToDayType.Common
         )
     }
 }

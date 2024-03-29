@@ -4,7 +4,7 @@ sealed class Category(open val name: String) {
     companion object {
         const val ApiName = "category"
 
-        fun allCategories() = listOf(
+        fun filterCategories() = listOf(
             Random,
             Business,
             Entertainment,
@@ -15,7 +15,7 @@ sealed class Category(open val name: String) {
             Technology
         )
 
-        private fun categories() = listOf(
+        fun categoryList() = listOf(
             Business,
             Entertainment,
             General,
@@ -28,7 +28,7 @@ sealed class Category(open val name: String) {
 
     data object Random : Category("") {
         override val name: String
-            get() = Category.categories().random().name
+            get() = Category.categoryList().random().name
     }
 
     data object Business : Category("business")

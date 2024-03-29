@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "pl.drincker.newstoday"
+    namespace = "com.whatrushka.home.impl"
     compileSdk = 34
 
     defaultConfig {
@@ -48,8 +48,9 @@ android {
 
 dependencies {
     implementation(project(":core:domain:newsapi:api"))
-    implementation(project(":core:data:appconfig:api"))
+    implementation(project(":core:data:api"))
     implementation(project(":core:ui"))
+    implementation(project(":features:home:api"))
 
     implementation(libs.coil.compose)
 

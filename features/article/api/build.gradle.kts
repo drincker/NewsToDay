@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.whatrushka.api"
+    namespace = "com.whatrushka.article.api"
     compileSdk = 34
 
     defaultConfig {

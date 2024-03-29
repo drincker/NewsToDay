@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.whatrushka.di"
+    namespace = "com.whatrushka.home.di"
     compileSdk = 34
 
     defaultConfig {
@@ -33,6 +33,12 @@ android {
 }
 
 dependencies {
+    implementation(project(":core:domain:newsapi:api"))
+    implementation(project(":core:data:api"))
+    implementation(project(":features:home:api"))
+    implementation(project(":features:home:impl"))
+
+    implementation(libs.koin.androidx.compose)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

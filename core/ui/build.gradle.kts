@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "pl.drincker.newstoday"
+    namespace = "com.whatrushka.core.ui"
     compileSdk = 34
 
     defaultConfig {
