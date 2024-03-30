@@ -1,11 +1,10 @@
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsKotlinAndroid)
-    alias(libs.plugins.kotlin.plugin.serialization)
 }
 
 android {
-    namespace = "com.whatrushka.api"
+    namespace = "com.example.di"
     compileSdk = 34
 
     defaultConfig {
@@ -23,8 +22,6 @@ android {
                 "proguard-rules.pro"
             )
         }
-        create("defaultConfig") {
-        }
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -36,11 +33,6 @@ android {
 }
 
 dependencies {
-
-    implementation(libs.ktor.client.cio)
-    implementation(libs.ktor.client.core)
-    implementation(libs.ktor.client.content.negotiation)
-    implementation(libs.ktor.client.serialization)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
