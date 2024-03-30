@@ -13,7 +13,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.example.impl.componets.ButtonNextOrGetStarted
 import com.example.impl.componets.PageIndicator
+import com.example.impl.componets.PreviousNextButton
 import com.example.impl.componets.SinglePage
 import com.example.impl.componets.pages
 
@@ -33,7 +35,7 @@ fun PagerScreen() {
         }
         Spacer(modifier = Modifier.size(16.dp))
 
-
+        ButtonNextOrGetStarted(pagerState = pagerState)
         Spacer(modifier = Modifier.size(16.dp))
         PageIndicator(
             pagerState = pagerState,
