@@ -15,7 +15,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.impl.componets.ButtonNextOrGetStarted
 import com.example.impl.componets.PageIndicator
-import com.example.impl.componets.PreviousNextButton
 import com.example.impl.componets.SinglePage
 import com.example.impl.componets.pages
 
