@@ -15,6 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.compose.material3.MaterialTheme
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -24,7 +25,7 @@ fun PageIndicator(pagerState: PagerState, pageCount: Int){
         horizontalArrangement = Arrangement.Center
     ){
         repeat(pageCount){iteration ->
-            val color: Color = if (pagerState.currentPage == iteration) Color.DarkGray else Color.LightGray
+            val color: Color = if (pagerState.currentPage == iteration) MaterialTheme.colorScheme.primary else Color.LightGray
             Box(
                 modifier = Modifier
                     .padding(4.dp)
