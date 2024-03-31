@@ -1,8 +1,12 @@
 package com.whatrushka.impl.presentation.components
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Icon
@@ -46,7 +50,7 @@ fun NewBox(
         Box(
             Modifier
                 .fillMaxSize()
-                .padding(16.dp)
+                .padding(24.dp)
         ) {
             Icon(
                 imageVector = ImageVector.vectorResource(R.drawable.icon_bookmark),
@@ -54,23 +58,31 @@ fun NewBox(
                 contentDescription = null,
                 modifier = Modifier
                     .align(Alignment.TopEnd)
-                    .size(30.dp)
+                    .size(26.dp)
             )
 
-            //        Text(text = article.title,
-//            style = TagLight,
-//            color = Color.White,
-//            modifier = Modifier.align(Alignment.BottomStart)
-//        )
+            Log.d("m", article.toString())
 
-            Text(
-                text = article.title,
-                style = NewsToDayType.NewDescPrev,
-                maxLines = 2,
-                overflow = TextOverflow.Ellipsis,
-                color = Color.White,
-                modifier = Modifier.align(Alignment.BottomStart)
-            )
+            Column(
+                Modifier.align(Alignment.BottomStart)
+            ) {
+                Text(
+                    text = (article.category?.name ?: "Nothing About").uppercase(),
+                    style = NewsToDayType.Light,
+                    color = Color.White
+                )
+
+                Spacer(Modifier.height(12.dp))
+
+                Text(
+                    text = article.title,
+                    style = NewsToDayType.NewDescPrev,
+                    maxLines = 2,
+                    overflow = TextOverflow.Ellipsis,
+                    color = Color.White,
+                )
+            }
+
         }
     }
 }

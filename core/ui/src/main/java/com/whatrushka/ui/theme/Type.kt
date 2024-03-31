@@ -8,8 +8,8 @@ import androidx.compose.ui.unit.sp
 object NewsToDayType {
     val Light = TextStyle(
         fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.W400,
-        fontSize = 12.sp,
+        fontWeight = FontWeight.W300,
+        fontSize = 18.sp,
         lineHeight = 16.sp,
         letterSpacing = 0.5.sp
     )
@@ -65,9 +65,9 @@ object NewsToDayType {
     val NewDescPrev = TextStyle(
         fontFamily = FontFamily.Default,
         fontWeight = FontWeight.W700,
-        fontSize = 16.sp,
-        lineHeight = 36.sp,
-        letterSpacing = 0.7.sp
+        fontSize = 20.sp,
+        lineHeight = 28.sp,
+        letterSpacing = 0.5.sp
     )
 
     val NewDescFull = TextStyle(

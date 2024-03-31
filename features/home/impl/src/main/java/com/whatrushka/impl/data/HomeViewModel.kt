@@ -49,11 +49,11 @@ class HomeViewModel(
             articles.addAll(
                 apiService.getTopHeadlines(
                     q = _q.value,
-                    language = appConfigService.getAppConfig().language,
+                    language = appConfigService.getConfiguredLanguage(),
                     category = selectedCategory,
                     pageSize = PAGE_SIZE,
                     page = pagination++
-                ).articles
+                )
             )
 
             val newLastCall = LastCall(_q.value, filterService.getSelectedCategory())
