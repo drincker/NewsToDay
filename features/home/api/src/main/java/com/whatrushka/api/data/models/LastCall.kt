@@ -4,5 +4,5 @@ import com.whatrushka.api.models.static.Category
 
 data class LastCall(
     val q: String = "",
-    val category: Category = Category.Random
+    val category: Category = Category.All
 )

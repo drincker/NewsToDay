@@ -1,5 +1,6 @@
 package com.whatrushka.impl.data
 
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.whatrushka.api.ApiService
@@ -13,7 +14,7 @@ import org.koin.core.component.KoinComponent
 
 class HomeViewModel(
     private val apiService: ApiService,
-    private val filterService: FilterService,
+    val filterService: FilterService,
     private val appConfigService: AppConfigService
 ) : ViewModel(), KoinComponent {
 
@@ -21,42 +22,47 @@ class HomeViewModel(
         const val PAGE_SIZE = 10
     }
 
-    private val _news = mutableListOf<Article>()
+    private val _news = mutableStateOf(emptyList<Article>())
     fun getNewsAsState() = _news
 
     private var pagination = 1
-    private val lastCall = LastCall()
+    private var lastCall = LastCall()
 
-    fun getNews(q: String) {
+    private val _q = mutableStateOf("")
+
+    fun getQAsState() = _q
+
+    fun setQ(q: String) {
+        _q.value = q
+    }
+
+    fun selectCategory(category: Category) {
+        filterService.selectCategory(category)
+        getNews()
+    }
+
+    fun getNews() {
         viewModelScope.launch {
             val articles = mutableListOf<Article>()
             val selectedCategory = filterService.getSelectedCategory()
 
-            var iterations = 1
-            var pageSize = PAGE_SIZE
+            articles.addAll(
+                apiService.getTopHeadlines(
+                    q = _q.value,
+                    language = appConfigService.getAppConfig().language,
+                    category = selectedCategory,
+                    pageSize = PAGE_SIZE,
+                    page = pagination++
+                ).articles
+            )
 
-            if (selectedCategory != Category.Random) {
-                iterations = PAGE_SIZE
-                pageSize = 1
-            }
+            val newLastCall = LastCall(_q.value, filterService.getSelectedCategory())
 
-            for (i in 1..iterations) {
-                articles.addAll(
-                    apiService.getTopHeadlines(
-                        q = q,
-                        language = appConfigService.getAppConfig().language,
-                        category = selectedCategory,
-                        pageSize = pageSize,
-                        page = pagination++
-                    ).articles
-                )
-            }
+            if (lastCall != newLastCall)
+                lastCall = newLastCall
+            _news.value = emptyList()
 
-            if (lastCall != LastCall(q, filterService.getSelectedCategory()))
-                _news.clear()
-
-            _news.addAll(articles)
+            _news.value += articles
         }
     }
-
 }

@@ -9,27 +9,31 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.capitalize
 import androidx.compose.ui.unit.dp
 import com.whatrushka.api.models.static.Category
+import com.whatrushka.ui.theme.LightGrey
 import com.whatrushka.ui.theme.NewsToDayType
 import com.whatrushka.ui.theme.PrimaryBlue
-import java.util.Locale
+import com.whatrushka.ui.theme.PrimaryGrey
 
 @Composable
 fun Tag(
     category: Category,
-    selected: Boolean,
-    onClick: (Category) -> Unit
+    selected: Category,
+    modifier: Modifier = Modifier
 ) {
     Box(
-        Modifier
-            .background(PrimaryBlue)
-            .padding(8.dp)
-            .clip(RoundedCornerShape(15.dp))
+        modifier
+            .clip(RoundedCornerShape(20.dp))
+            .background(
+                if (category == selected) PrimaryBlue else LightGrey
+            )
+            .padding(16.dp, 10.dp)
+
     ) {
-        Text(category.name.replaceFirstChar { it.uppercaseChar() },
-            color = Color.White,
+        Text(
+            category.name.replaceFirstChar { it.uppercaseChar() },
+            color = if (category == selected) Color.White else PrimaryGrey,
             style = NewsToDayType.Common
         )
     }

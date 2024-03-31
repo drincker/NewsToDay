@@ -1,7 +1,9 @@
 package com.whatrushka.impl.presentation.components
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -10,7 +12,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.whatrushka.api.models.Article
@@ -24,31 +29,48 @@ fun NewBox(
     modifier: Modifier = Modifier
 ) {
     Box(modifier) {
-        Icon(
-            imageVector = ImageVector.vectorResource(R.drawable.icon_bookmark),
-            contentDescription = null,
-            modifier = Modifier
-                .align(Alignment.TopEnd)
-                .size(20.dp)
-        )
-        
         AsyncImage(
             contentDescription = null,
             model = article.urlToImage,
+            contentScale = ContentScale.Crop,
+            placeholder = painterResource(R.drawable.image_placeholder),
             modifier = Modifier.fillMaxSize()
         )
 
-//        Text(text = article.title,
+        Box(
+            Modifier
+                .fillMaxSize()
+                .background(Color(0x32000000))
+        )
+
+        Box(
+            Modifier
+                .fillMaxSize()
+                .padding(16.dp)
+        ) {
+            Icon(
+                imageVector = ImageVector.vectorResource(R.drawable.icon_bookmark),
+                tint = Color.White,
+                contentDescription = null,
+                modifier = Modifier
+                    .align(Alignment.TopEnd)
+                    .size(30.dp)
+            )
+
+            //        Text(text = article.title,
 //            style = TagLight,
 //            color = Color.White,
 //            modifier = Modifier.align(Alignment.BottomStart)
 //        )
 
-        Text(text = article.title,
-            style = NewsToDayType.Light,
-            color = Color.White,
-            modifier = Modifier.align(Alignment.BottomStart)
-        )
-
+            Text(
+                text = article.title,
+                style = NewsToDayType.NewDescPrev,
+                maxLines = 2,
+                overflow = TextOverflow.Ellipsis,
+                color = Color.White,
+                modifier = Modifier.align(Alignment.BottomStart)
+            )
+        }
     }
 }

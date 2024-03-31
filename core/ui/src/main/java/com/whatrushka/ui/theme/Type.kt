@@ -1,7 +1,5 @@
 package com.whatrushka.ui.theme
 
-import android.hardware.lights.Light
-import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -68,8 +66,8 @@ object NewsToDayType {
         fontFamily = FontFamily.Default,
         fontWeight = FontWeight.W700,
         fontSize = 16.sp,
-        lineHeight = 24.sp,
-        letterSpacing = 0.5.sp
+        lineHeight = 36.sp,
+        letterSpacing = 0.7.sp
     )
 
     val NewDescFull = TextStyle(

@@ -1,14 +1,12 @@
 package com.whatrushka.impl
 
 import com.whatrushka.api.ApiService
-import com.whatrushka.api.models.Article
 import com.whatrushka.api.models.NewsResponse
 import com.whatrushka.api.models.static.Category
 import com.whatrushka.api.models.static.Language
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.get
-import kotlinx.coroutines.flow.last
 
 class ApiServiceImpl(
     private val client: HttpClient,
@@ -47,7 +45,8 @@ class ApiServiceImpl(
             append("apiKey", apiKey)
             q?.let { append("q", it) }
             append(Language.ApiName, language.name)
-            category?.let { append(Category.ApiName, it.name) }
+            if (category !is Category.All && category != null)
+                append(Category.ApiName, category.name)
             append("page", page.toString())
             append("pageSize", pageSize.toString())
         }

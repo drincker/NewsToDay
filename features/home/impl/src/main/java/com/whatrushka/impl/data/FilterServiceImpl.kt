@@ -6,14 +6,13 @@ import com.whatrushka.api.models.static.Category
 
 class FilterServiceImpl : FilterService {
 
-    private var _selectedCategory =
-        mutableStateOf<Category>(Category.Random)
+    private var _selectedCategory = mutableStateOf<Category>(Category.All)
 
     override fun getSelectedCategory() = _selectedCategory.value
 
     override fun getSelectedCategoryAsState() = _selectedCategory
 
-    override fun getCategories() = Category.filterCategories()
+    override fun getCategories() = Category.list()
 
     override fun selectCategory(category: Category) {
         _selectedCategory.value = category

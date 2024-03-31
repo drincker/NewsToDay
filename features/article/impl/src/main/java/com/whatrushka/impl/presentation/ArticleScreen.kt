@@ -31,9 +31,9 @@ import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.whatrushka.api.models.Article
 import com.whatrushka.api.models.Source
+import com.whatrushka.core.ui.R
 import com.whatrushka.ui.theme.NewsToDayType
-import com.whatrushka.ui.theme.SecondaryGrey
-import pl.drincker.newstoday.R
+import com.whatrushka.ui.theme.PrimaryGrey
 
 @Preview
 @Composable
@@ -124,18 +124,21 @@ fun ArticleScreen(
                 }
 
                 Column {
-                    Text(article.title,
+                    Text(
+                        article.title,
                         color = Color.White,
                         style = NewsToDayType.NewDescFull
                     )
                     Spacer(modifier = Modifier.padding(12.dp))
                     Column {
-                        Text(article.author,
+                        Text(
+                            article.author ?: "Noname",
                             color = Color.White,
                             style = NewsToDayType.SemiCommon
                         )
-                        Text("Author",
-                            color = SecondaryGrey,
+                        Text(
+                            "Author",
+                            color = PrimaryGrey,
                             style = NewsToDayType.SemiLight
                         )
                     }
@@ -146,7 +149,8 @@ fun ArticleScreen(
         Column(
             modifier = modifier.fillMaxSize()
         ) {
-            Text(article.description,
+            Text(
+                article.description ?: "no desc",
                 style = TextStyle(
                     color = Color.Black,
                     fontSize = 20.sp,
@@ -155,7 +159,7 @@ fun ArticleScreen(
             )
             Spacer(modifier = Modifier.height(16.dp))
             Text(
-                article.content,
+                article.content ?: "no content",
                 style = TextStyle(
                     color = Color(0xFF666C8E),
                     fontSize = 16.sp,
