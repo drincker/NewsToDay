@@ -1,6 +1,7 @@
 package com.whatrushka.impl
 
 import com.whatrushka.api.ApiService
+import com.whatrushka.api.models.Article
 import com.whatrushka.api.models.NewsResponse
 import com.whatrushka.api.models.static.Category
 import com.whatrushka.api.models.static.Language
@@ -40,7 +41,7 @@ class ApiServiceImpl(
         category: Category?,
         page: Int,
         pageSize: Int
-    ) = client.get(TOP_HEADLINES) {
+    ): List<Article> = client.get(TOP_HEADLINES) {
         url.parameters.apply {
             append("apiKey", apiKey)
             q?.let { append("q", it) }
@@ -50,5 +51,10 @@ class ApiServiceImpl(
             append("page", page.toString())
             append("pageSize", pageSize.toString())
         }
-    }.body<NewsResponse>()
+    }.body<NewsResponse>().articles
+        .apply {
+            map {
+                it.category = category
+            }
+        }
 }

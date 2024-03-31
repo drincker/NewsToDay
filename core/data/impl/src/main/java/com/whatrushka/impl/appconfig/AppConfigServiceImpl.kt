@@ -5,6 +5,7 @@ import androidx.datastore.core.Serializer
 import androidx.datastore.dataStore
 import com.whatrushka.api.appconfig.AppConfigService
 import com.whatrushka.api.appconfig.models.AppConfig
+import com.whatrushka.api.models.static.Category
 import com.whatrushka.api.models.static.Language
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
@@ -18,12 +19,28 @@ class AppConfigServiceImpl(
     private val appConfig: Flow<AppConfig>
         get() = context.appConfigDataStore.data
 
-    override suspend fun getAppConfig() = appConfig.first()
+    private suspend fun getAppConfig() = appConfig.first()
 
-    override suspend fun updateAppConfig(language: Language) {
+    override suspend fun setLanguage(language: Language) {
         context.appConfigDataStore.updateData {
-            AppConfig(language = language)
+            getAppConfig().copy(language = language)
         }
     }
+
+    override suspend fun getConfiguredLanguage() =
+        getAppConfig().language
+
+    override fun getLanguages() = Language.list()
+
+    override suspend fun setFavoritesCategories(categories: Set<Category>) {
+        context.appConfigDataStore.updateData {
+            getAppConfig().copy(favoriteCategories = categories)
+        }
+    }
+
+    override suspend fun getFavoritesCategories() =
+        getAppConfig().favoriteCategories
+
+    override fun getCategories() = Category.list()
 
 }

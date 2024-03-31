@@ -12,7 +12,7 @@ class FilterServiceImpl : FilterService {
 
     override fun getSelectedCategoryAsState() = _selectedCategory
 
-    override fun getCategories() = Category.list()
+    override fun getCategories() = Category.filterList()
 
     override fun selectCategory(category: Category) {
         _selectedCategory.value = category

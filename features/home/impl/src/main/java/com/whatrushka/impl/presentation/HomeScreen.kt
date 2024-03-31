@@ -66,6 +66,8 @@ fun HomeScreen(
             colors = SearchBarDefaults.colors(
                 containerColor = LightGrey,
                 inputFieldColors = TextFieldDefaults.colors(
+                    focusedPlaceholderColor = PrimaryGrey,
+                    unfocusedPlaceholderColor = PrimaryGrey,
                     unfocusedTextColor = PrimaryGrey,
                     focusedTextColor = PrimaryGrey
                 )
@@ -73,15 +75,14 @@ fun HomeScreen(
             query = q.value,
             onQueryChange = { viewModel.setQ(it) },
             onSearch = {
-                active = false
                 viewModel.getNews()
             },
-            active = active,
-            onActiveChange = { active = it },
+            active = false,
+            onActiveChange = {},
             placeholder = {
                 Text(text = "Search news")
             },
-            trailingIcon = {
+            leadingIcon = {
                 Icon(
                     imageVector = Icons.Default.Search,
                     contentDescription = null,
@@ -94,7 +95,7 @@ fun HomeScreen(
         Spacer(Modifier.height(16.dp))
 
         LazyRow {
-            Category.list().forEach {
+            Category.filterList().forEach {
                 item {
                     Tag(
                         it,

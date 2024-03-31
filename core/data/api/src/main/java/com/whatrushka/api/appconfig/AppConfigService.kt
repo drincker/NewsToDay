@@ -1,11 +1,19 @@
 package com.whatrushka.api.appconfig
 
-import com.whatrushka.api.appconfig.models.AppConfig
+import com.whatrushka.api.models.static.Category
 import com.whatrushka.api.models.static.Language
-import kotlinx.coroutines.flow.Flow
 
 interface AppConfigService {
-    suspend fun getAppConfig(): AppConfig
 
-    suspend fun updateAppConfig(language: Language)
+    suspend fun setLanguage(language: Language)
+
+    suspend fun getConfiguredLanguage(): Language
+
+    fun getLanguages(): List<Language>
+
+    suspend fun setFavoritesCategories(categories: Set<Category>)
+
+    suspend fun getFavoritesCategories(): Set<Category>
+
+    fun getCategories(): List<Category>
 }
