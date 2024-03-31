@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--    Home Screen     -->
+    <string name="home_screen_title">Browse</string>
+    <string name="home_screen_desc">Discover things of this world</string>
+</resources>

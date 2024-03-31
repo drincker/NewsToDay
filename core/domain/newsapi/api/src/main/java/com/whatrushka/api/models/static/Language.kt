@@ -1,10 +1,14 @@
 package com.whatrushka.api.models.static
 
-sealed class Language(val name: String) {
+import kotlinx.serialization.Serializable
+
+@Serializable
+sealed class Language(val name: String, val fullName: String) {
     companion object {
         const val ApiName = "language"
     }
 
-    data object RU : Language("ru")
-    data object EN : Language("en")
+    @Serializable data object RU : Language("ru", "Russian")
+    // TODO: Replace fullName to resourceID
+    @Serializable data object EN : Language("en", "English")
 }

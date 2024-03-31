@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.whatrushka.di"
+    namespace = "com.whatrushka.core.domain.newsapi.di"
     compileSdk = 34
 
     defaultConfig {
