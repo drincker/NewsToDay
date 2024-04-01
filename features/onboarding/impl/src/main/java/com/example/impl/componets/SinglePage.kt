@@ -17,6 +17,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -38,15 +39,19 @@ fun SinglePage (page: Page){
                 .fillMaxWidth()
                 .clip(RoundedCornerShape(16.dp))
         )
-
+        Spacer(modifier = Modifier.size(12.dp))
         Text(
             text = page.title,
-            fontFamily = FontFamily.Monospace,
+            fontFamily = FontFamily.SansSerif,
             fontWeight = FontWeight.SemiBold,
             fontSize = 28.sp,
-            textDecoration = TextDecoration.Underline
+            textDecoration = TextDecoration.None
         )
         Spacer(modifier = Modifier.size(12.dp))
-        Text(text = page.description, fontSize = 18.sp)
+        Text(
+            text = page.description,
+            fontSize = 18.sp,
+            textAlign = TextAlign.Center
+        )
     }
 }
