@@ -2,4 +2,6 @@ package com.whatrushka.api.navigation
 
 import com.whatrushka.navigation.Route
 
-object HomeRoute : Route("/home")
+object HomeRoute : Route("/home") {
+    fun navigateToRoute() = pathWithArgs
+}

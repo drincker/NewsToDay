@@ -112,18 +112,23 @@ fun HomeScreen(
         LazyRow {
             news.value.forEach {
                 item {
+
                     NewBox(
                         it,
                         Modifier
                             .size(270.dp)
                             .clip(RoundedCornerShape(15.dp))
+                            .clickable {
+                                navigator.navigateToArticle(it)
+                            }
                     )
+
                     Spacer(Modifier.width(16.dp))
                 }
             }
         }
 
-        Spacer(Modifier.height(16.dp))
+        Spacer(Modifier.height(20.dp))
 
         Row(
             horizontalArrangement = Arrangement.SpaceBetween
@@ -134,6 +139,8 @@ fun HomeScreen(
                 style = NewsToDayType.TitleMedium
             )
         }
+
+        Spacer(Modifier.height(16.dp))
 
         Column {
 

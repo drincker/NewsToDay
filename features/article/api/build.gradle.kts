@@ -34,8 +34,10 @@ android {
 
 dependencies {
     implementation(project(":core:navigation"))
+    implementation(project(":core:domain:newsapi:api"))
 
     implementation(libs.navigation.compose)
+    implementation(libs.kotlinx.serialization.json)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
