@@ -9,6 +9,8 @@ lifecycleRuntimeKtx = "2.7.0"
 activityCompose = "1.8.2"
 composeBom = "2024.03.00"
 composeRuntime = "1.6.4"
+composeNav = "2.7.7"
+
 appcompat = "1.6.1"
 material = "1.11.0"
 
@@ -34,7 +36,7 @@ kotlin-serialization = "1.6.3"
 androidx-datastore = { group = "androidx.datastore", name = "datastore", version.ref = "protoDataStore" }
 
 # Async Images
-coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil"}
+coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
 
 # DI : Koin
 koin-androidx-compose = { group = "io.insert-koin", name = "koin-androidx-compose", version.ref = "koin" }
@@ -49,6 +51,7 @@ ktor-serialization-kotlinx-json = { group = "io.ktor", name = "ktor-serializatio
 
 kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlin-serialization" }
 
+navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "composeNav" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }

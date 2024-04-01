@@ -21,16 +21,13 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.whatrushka.api.models.static.Category
 import com.whatrushka.impl.data.HomeViewModel
+import com.whatrushka.impl.navigation.HomeNavigator
 import com.whatrushka.impl.presentation.components.NewBox
 import com.whatrushka.impl.presentation.components.Tag
 import com.whatrushka.ui.components.ScreenAppBar
@@ -42,12 +39,12 @@ import com.whatrushka.ui.theme.PrimaryGrey
 @Composable
 fun HomeScreen(
     viewModel: HomeViewModel,
+    navigator: HomeNavigator,
     modifier: Modifier = Modifier
 ) {
     val news = viewModel.getNewsAsState()
     val q = viewModel.getQAsState()
     val selectedCategory = viewModel.filterService.getSelectedCategoryAsState()
-    var active by remember { mutableStateOf(false) }
 
     LaunchedEffect(null) {
         viewModel.getNews()

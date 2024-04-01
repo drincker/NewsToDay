@@ -51,8 +51,10 @@ dependencies {
     implementation(project(":core:data:api"))
     implementation(project(":core:ui"))
     implementation(project(":features:home:api"))
+    implementation(project(":core:navigation"))
 
     implementation(libs.coil.compose)
+    implementation(libs.navigation.compose)
 
     implementation(libs.koin.androidx.compose)
     implementation(libs.androidx.core.ktx)
