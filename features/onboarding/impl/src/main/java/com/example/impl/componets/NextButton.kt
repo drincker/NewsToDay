@@ -8,8 +8,6 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.PagerState
@@ -25,24 +23,24 @@ import kotlin.system.exitProcess
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun ButtonNextOrGetStarted(pagerState: PagerState){
+fun NextButton(pagerState: PagerState){
     val scope: CoroutineScope = rememberCoroutineScope()
     val isLastPage = pagerState.currentPage == pages.size - 1
-//    Row (
-//        modifier = Modifier.fillMaxWidth(),
-//        verticalAlignment = Alignment.CenterVertically,
-//        horizontalArrangement = Arrangement.Center
-    Column (
+    Row (
         modifier = Modifier.fillMaxWidth(),
-        verticalArrangement = Arrangement.Bottom,
-        horizontalAlignment = Alignment.CenterHorizontally
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.Center
+//    Column (
+//        modifier = Modifier.fillMaxWidth(),
+//        verticalArrangement = Arrangement.Bottom,
+//        horizontalAlignment = Alignment.CenterHorizontally
     ){
         Button(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 64.dp),
             onClick = { if (isLastPage) {
-                //TODO: launch mainScreen
+                //TODO: launch Screen
                 exitProcess(111)
             } else {
                 scope.launch{ pagerState.animateScrollToPage(pagerState.currentPage + 1) }

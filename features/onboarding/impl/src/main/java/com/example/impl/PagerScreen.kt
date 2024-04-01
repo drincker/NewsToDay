@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.PagerState
@@ -14,7 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.impl.componets.ButtonNextOrGetStarted
+import com.example.impl.componets.NextButton
 import com.example.impl.componets.PageIndicator
 import com.example.impl.componets.SinglePage
 import com.example.impl.componets.pages
@@ -38,7 +39,7 @@ fun PagerScreen() {
         }
         Spacer(modifier = Modifier.size(16.dp))
 
-        ButtonNextOrGetStarted(pagerState = pagerState)
+        NextButton(pagerState = pagerState)
         Spacer(modifier = Modifier.size(16.dp))
         PageIndicator(
             pagerState = pagerState,
