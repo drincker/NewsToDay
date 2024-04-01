@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.whatrushka.impl"
+    namespace = "com.whatrushka.core.domain.newsapi.impl"
     compileSdk = 34
 
     defaultConfig {
@@ -21,15 +21,15 @@ android {
 
     buildTypes {
         defaultConfig {
-            buildConfigField("string", "NEWS_API_KEY", "b99e497649384d459634680b3a71a0ff")
+            buildConfigField("String", "NEWS_API_KEY", "\"b99e497649384d459634680b3a71a0ff\"")
         }
 
         debug {
-            buildConfigField("string", "NEWS_API_KEY", "b99e497649384d459634680b3a71a0ff")
+            buildConfigField("String", "NEWS_API_KEY", "\"b99e497649384d459634680b3a71a0ff\"")
         }
 
         release {
-            buildConfigField("string", "NEWS_API_KEY", "b99e497649384d459634680b3a71a0ff")
+            buildConfigField("String", "NEWS_API_KEY", "\"b99e497649384d459634680b3a71a0ff\"")
 
             isMinifyEnabled = false
             proguardFiles(
@@ -48,8 +48,6 @@ android {
 }
 
 dependencies {
-    implementation(project(":core:domain:newsapi:api"))
-
     implementation(libs.ktor.client.cio)
     implementation(libs.ktor.client.core)
     implementation(libs.ktor.client.content.negotiation)
@@ -59,6 +57,8 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
+    implementation(project(":core:data:api"))
+    implementation(project(":core:domain:newsapi:api"))
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

@@ -1,0 +1,19 @@
+package com.whatrushka.api.appconfig
+
+import com.whatrushka.api.models.static.Category
+import com.whatrushka.api.models.static.Language
+
+interface AppConfigService {
+
+    suspend fun setLanguage(language: Language)
+
+    suspend fun getConfiguredLanguage(): Language
+
+    fun getLanguages(): List<Language>
+
+    suspend fun setFavoritesCategories(categories: Set<Category>)
+
+    suspend fun getFavoritesCategories(): Set<Category>
+
+    fun getCategories(): List<Category>
+}

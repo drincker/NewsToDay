@@ -8,8 +8,18 @@ espressoCore = "3.5.1"
 lifecycleRuntimeKtx = "2.7.0"
 activityCompose = "1.8.2"
 composeBom = "2024.03.00"
+composeRuntime = "1.6.4"
+composeNav = "2.7.7"
+
 appcompat = "1.6.1"
 material = "1.11.0"
+
+
+# Proto DataStore
+protoDataStore = "1.0.0"
+
+# Async Images
+coil = "2.6.0"
 
 # DI : Koin
 koin = "3.5.3"
@@ -18,9 +28,15 @@ koin = "3.5.3"
 ktor = "2.3.9"
 
 kotlin-plugin-serialization = "1.9.23"
-uiTestManifest = "1.6.4"
+kotlin-serialization = "1.6.3"
 
 [libraries]
+
+# Proto DataStore
+androidx-datastore = { group = "androidx.datastore", name = "datastore", version.ref = "protoDataStore" }
+
+# Async Images
+coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
 
 # DI : Koin
 koin-androidx-compose = { group = "io.insert-koin", name = "koin-androidx-compose", version.ref = "koin" }
@@ -33,6 +49,9 @@ ktor-client-cio = { group = "io.ktor", name = "ktor-client-cio", version.ref = "
 ktor-client-core = { group = "io.ktor", name = "ktor-client-core", version.ref = "ktor" }
 ktor-serialization-kotlinx-json = { group = "io.ktor", name = "ktor-serialization-kotlinx-json", version.ref = "ktor" }
 
+kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlin-serialization" }
+
+navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "composeNav" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
@@ -40,6 +59,7 @@ androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-co
 androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
+androidx-compose-runtime = { group = "androidx.compose.runtime", name = "runtime-android", version.ref = "composeRuntime" }
 androidx-ui = { group = "androidx.compose.ui", name = "ui" }
 androidx-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
 androidx-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
@@ -49,7 +69,6 @@ androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest", version.ref = "uiTestManifest" }
 
 [plugins]
 
