@@ -33,6 +33,9 @@ android {
 }
 
 dependencies {
+    implementation(project(":core:navigation"))
+
+    implementation(libs.navigation.compose)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

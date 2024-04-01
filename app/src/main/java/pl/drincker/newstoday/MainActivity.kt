@@ -23,7 +23,12 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = Color.White
                 ) {
-                    
+                    HomeScreen(
+                        get(),
+                        Modifier
+                            .fillMaxSize()
+                            .padding(16.dp)
+                    )
                 }
             }
         }

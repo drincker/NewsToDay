@@ -36,6 +36,7 @@ dependencies {
     implementation(project(":core:domain:newsapi:api"))
     implementation(project(":core:data:api"))
     implementation(project(":core:ui"))
+    implementation(project(":core:navigation"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.compose.runtime)
