@@ -50,8 +50,10 @@ dependencies {
     implementation(project(":core:domain:newsapi:api"))
     implementation(project(":core:ui"))
     implementation(project(":core:navigation"))
+    implementation(project(":features:article:api"))
 
     implementation(libs.navigation.compose)
+    implementation(libs.kotlinx.serialization.json)
     implementation(libs.coil.compose)
 
     implementation(libs.androidx.core.ktx)

@@ -34,6 +34,11 @@ android {
 
 dependencies {
 
+    implementation(project(":features:article:api"))
+    implementation(project(":features:article:impl"))
+
+    implementation(libs.koin.androidx.compose)
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)

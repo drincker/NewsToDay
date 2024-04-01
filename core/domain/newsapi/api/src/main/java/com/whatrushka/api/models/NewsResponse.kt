@@ -1,6 +1,5 @@
 package com.whatrushka.api.models
 
-import com.whatrushka.api.models.Article
 import kotlinx.serialization.Serializable
 
 @Serializable

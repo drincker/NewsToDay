@@ -38,6 +38,8 @@ dependencies {
     implementation(project(":core:ui"))
     implementation(project(":core:navigation"))
 
+    implementation(libs.navigation.compose)
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.compose.runtime)
     implementation(libs.androidx.appcompat)
