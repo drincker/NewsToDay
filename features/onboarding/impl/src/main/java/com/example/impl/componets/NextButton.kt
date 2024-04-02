@@ -16,24 +16,22 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.exemple.impl.R
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import kotlin.system.exitProcess
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun NextButton(pagerState: PagerState){
+fun NextButton(pagerState: PagerState, pages: List<Page>){
     val scope: CoroutineScope = rememberCoroutineScope()
     val isLastPage = pagerState.currentPage == pages.size - 1
     Row (
         modifier = Modifier.fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.Center
-//    Column (
-//        modifier = Modifier.fillMaxWidth(),
-//        verticalArrangement = Arrangement.Bottom,
-//        horizontalAlignment = Alignment.CenterHorizontally
     ){
         Button(
             modifier = Modifier
@@ -47,7 +45,8 @@ fun NextButton(pagerState: PagerState){
             } }
         ) {
             Text(
-                text = if (isLastPage) "Get Started" else "Next"
+                text = if (isLastPage) stringResource(R.string.button_get_started)
+                else stringResource(R.string.button_next)
             )
         }
     }

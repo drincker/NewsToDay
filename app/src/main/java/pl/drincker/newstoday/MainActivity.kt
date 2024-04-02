@@ -9,6 +9,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.example.impl.PagerScreen
 import com.whatrushka.impl.presentation.HomeScreen
 import org.koin.android.ext.android.get
 import pl.drincker.newstoday.ui.theme.NewsToDayTheme
@@ -23,7 +24,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = Color.White
                 ) {
-
+                    PagerScreen()
                 }
             }
         }
