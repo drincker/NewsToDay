@@ -37,12 +37,11 @@ dependencies {
     implementation(project(":features:article:api"))
     implementation(project(":features:article:impl"))
 
+    implementation(libs.navigation.compose)
     implementation(libs.koin.androidx.compose)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 }

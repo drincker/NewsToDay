@@ -3,10 +3,14 @@ package pl.drincker.newstoday
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
+import pl.drincker.newstoday.navigation.MainNavigationScreen
 import pl.drincker.newstoday.ui.theme.NewsToDayTheme
 
 class MainActivity : ComponentActivity() {
@@ -16,10 +20,17 @@ class MainActivity : ComponentActivity() {
             NewsToDayTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = Color.White
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .background(Color.White),
+                    color = Color.White,
                 ) {
-
+                    MainNavigationScreen(
+                        Modifier
+                            .fillMaxSize()
+                            .padding(16.dp)
+                            .background(Color.White)
+                    )
                 }
             }
         }

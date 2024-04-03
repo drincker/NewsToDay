@@ -1,6 +1,7 @@
 package com.whatrushka.impl.presentation
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -25,37 +26,19 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.whatrushka.api.models.Article
-import com.whatrushka.api.models.Source
 import com.whatrushka.core.ui.R
+import com.whatrushka.impl.navigation.ArticleNavigator
 import com.whatrushka.ui.theme.NewsToDayType
 import com.whatrushka.ui.theme.PrimaryGrey
-
-@Preview
-@Composable
-fun ArticleScreenPreview() {
-    ArticleScreen(
-        modifier = Modifier.padding(16.dp),
-        article = Article(
-            Source("some", "some"),
-            author = "John Doe",
-            title = "The Gradle Error",
-            description = "Lorem Ipsum",
-            url = "https://google.com/",
-            urlToImage = "https://mykaleidoscope.ru/x/uploads/posts/2022-10/1666389897_62-mykaleidoscope-ru-p-klassnaya-priroda-oboi-67.jpg",
-            publishedAt = "2024-22-03",
-            content = loremIpsum
-        )
-    )
-}
 
 @Composable
 fun ArticleScreen(
     article: Article,
+    navigator: ArticleNavigator,
     modifier: Modifier = Modifier
 ) {
     val scrollState = rememberScrollState()
@@ -94,7 +77,9 @@ fun ArticleScreen(
 
             Column(
                 verticalArrangement = Arrangement.SpaceBetween,
-                modifier = modifier.fillMaxSize()
+                modifier = Modifier
+                    .padding(16.dp)
+                    .fillMaxSize()
             ) {
 
                 Row(
@@ -106,18 +91,23 @@ fun ArticleScreen(
                     Icon(
                         contentDescription = null,
                         imageVector = ImageVector.vectorResource(R.drawable.icon_arrow_back),
-                        modifier = Modifier.size(25.dp)
+                        tint = Color.White,
+                        modifier = Modifier
+                            .size(25.dp)
+                            .clickable { navigator.onBackButtonClick() }
                     )
                     Column {
                         Icon(
                             contentDescription = null,
                             imageVector = ImageVector.vectorResource(R.drawable.icon_bookmark),
+                            tint = Color.White,
                             modifier = Modifier.size(25.dp)
                         )
                         Spacer(modifier = Modifier.height(20.dp))
                         Icon(
                             contentDescription = null,
                             imageVector = ImageVector.vectorResource(R.drawable.icon_arrow_share),
+                            tint = Color.White,
                             modifier = Modifier.size(25.dp)
                         )
                     }
@@ -136,6 +126,7 @@ fun ArticleScreen(
                             color = Color.White,
                             style = NewsToDayType.SemiCommon
                         )
+                        Spacer(modifier = Modifier.height(10.dp))
                         Text(
                             "Author",
                             color = PrimaryGrey,

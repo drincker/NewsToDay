@@ -29,7 +29,7 @@ class HomeNavigationImpl : HomeNavigation {
             val homeViewModel: HomeViewModel = koinViewModel()
             val homeNavigator: HomeNavigator = koinInject { parametersOf(navController) }
 
-            HomeScreen(homeViewModel, homeNavigator, modifier)
+            HomeScreen(homeViewModel, homeNavigator, navController, modifier)
         }
     }
 

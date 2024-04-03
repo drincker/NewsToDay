@@ -1,5 +1,6 @@
 package com.whatrushka.impl.navigation
 
+import android.util.Log
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
@@ -9,12 +10,18 @@ import com.whatrushka.api.models.Article
 import com.whatrushka.api.navigation.ArticleNavigation
 import com.whatrushka.api.navigation.ArticleRoute
 import com.whatrushka.impl.presentation.ArticleScreen
+import org.koin.compose.koinInject
+import org.koin.core.parameter.parametersOf
 
 class ArticleNavigationImpl : ArticleNavigation {
     override val route = ArticleRoute
 
     override fun navigate(navController: NavController, article: Article) = with(navController) {
-        currentBackStackEntry?.savedStateHandle?.set(ArticleRoute.KEYS.ARTICLE, article)
+        currentBackStackEntry?.savedStateHandle?.let {
+            Log.d("m", it.toString())
+            it[ArticleRoute.KEYS.ARTICLE] = article
+            Log.d("m", it.contains(ArticleRoute.KEYS.ARTICLE).toString())
+        }
         navigate(route.path())
     }
 
@@ -24,9 +31,14 @@ class ArticleNavigationImpl : ArticleNavigation {
         modifier: Modifier
     ) {
         navGraphBuilder.composable(route.path()) {
-            navController.currentBackStackEntry?.savedStateHandle
-                ?.get<Article>(ArticleRoute.KEYS.ARTICLE)?.let {
-                    ArticleScreen(it)
+            val articleNavigator: ArticleNavigator = koinInject { parametersOf(navController) }
+            navController
+                .previousBackStackEntry
+                ?.savedStateHandle
+                ?.get<Article>(ArticleRoute.KEYS.ARTICLE)
+                ?.let {
+                    Log.d("m", it.toString())
+                    ArticleScreen(it, articleNavigator, modifier)
                 }
         }
     }

@@ -1,7 +1,0 @@
-package com.whatrushka.impl.presentation
-
-val loremIpsum = """
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. In dictum non consectetur a erat. Consequat semper viverra nam libero. Blandit turpis cursus in hac. Turpis in eu mi bibendum neque. Quis eleifend quam adipiscing vitae proin sagittis nisl rhoncus. Justo nec ultrices dui sapien eget mi proin sed libero. Amet commodo nulla facilisi nullam vehicula. Nunc faucibus a pellentesque sit amet porttitor eget dolor. Dui accumsan sit amet nulla. Habitant morbi tristique senectus et. Fermentum leo vel orci porta non pulvinar neque laoreet suspendisse. Tortor condimentum lacinia quis vel. Sagittis vitae et leo duis ut. At urna condimentum mattis pellentesque id nibh tortor id. Dolor sed viverra ipsum nunc aliquet bibendum enim. Pellentesque elit eget gravida cum sociis natoque.
-
-    Id venenatis a condimentum vitae sapien pellentesque. Ac feugiat sed lectus vestibulum mattis ullamcorper. Eu sem integer vitae justo eget. Pharetra vel turpis nunc eget. Enim tortor at auctor urna nunc id. Accumsan sit amet nulla facilisi morbi tempus iaculis urna id. Leo duis ut diam quam nulla. Sodales neque sodales ut etiam sit. Est velit egestas dui id ornare arcu odio ut. Arcu risus quis varius quam quisque. Aliquet eget sit amet tellus cras adipiscing. In arcu cursus euismod quis.
-""".trimIndent()
