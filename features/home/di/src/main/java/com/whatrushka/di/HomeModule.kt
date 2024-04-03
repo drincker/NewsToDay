@@ -14,7 +14,7 @@ val homeModule = module {
 
     single<HomeNavigation> { HomeNavigationImpl() }
 
-    single<HomeNavigator> { navController -> HomeNavigator(navController.get(), get()) }
+    single { navController -> HomeNavigator(navController.get(), get()) }
 
     viewModel { HomeViewModel(get(), get(), get()) }
 }

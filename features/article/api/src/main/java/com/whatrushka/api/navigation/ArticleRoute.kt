@@ -4,7 +4,7 @@ import com.whatrushka.navigation.Route
 
 
 object ArticleRoute : Route(
-    "/article",
+    "article",
 ) {
     object KEYS {
         const val ARTICLE = "article"
