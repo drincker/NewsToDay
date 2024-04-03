@@ -8,9 +8,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.dp
-import com.whatrushka.impl.presentation.HomeScreen
-import org.koin.android.ext.android.get
+import com.example.impl.presentation.PreviewConversation
 import pl.drincker.newstoday.ui.theme.NewsToDayTheme
 
 class MainActivity : ComponentActivity() {
@@ -23,12 +21,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = Color.White
                 ) {
-                    HomeScreen(
-                        get(),
-                        Modifier
-                            .fillMaxSize()
-                            .padding(16.dp)
-                    )
+                    PreviewConversation()
                 }
             }
         }
