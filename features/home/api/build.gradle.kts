@@ -35,14 +35,13 @@ android {
 dependencies {
     implementation(project(":core:domain:newsapi:api"))
     implementation(project(":core:data:api"))
-    implementation(project(":core:ui"))
     implementation(project(":core:navigation"))
+
+    implementation(libs.navigation.compose)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.compose.runtime)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 }

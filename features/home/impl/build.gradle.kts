@@ -51,6 +51,7 @@ dependencies {
     implementation(project(":core:data:api"))
     implementation(project(":core:ui"))
     implementation(project(":features:home:api"))
+    implementation(project(":features:article:api"))
     implementation(project(":core:navigation"))
 
     implementation(libs.coil.compose)
@@ -69,7 +70,5 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 }

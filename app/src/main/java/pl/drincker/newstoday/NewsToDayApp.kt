@@ -2,6 +2,7 @@ package pl.drincker.newstoday
 
 import android.app.Application
 import com.whatrushka.di.appConfigModule
+import com.whatrushka.di.articleModule
 import com.whatrushka.di.homeModule
 import com.whatrushka.di.newsApiModule
 import org.koin.android.ext.koin.androidContext
@@ -19,7 +20,8 @@ class NewsToDayApp : Application() {
             modules(
                 appConfigModule,
                 newsApiModule,
-                homeModule
+                homeModule,
+                articleModule
             )
         }
     }

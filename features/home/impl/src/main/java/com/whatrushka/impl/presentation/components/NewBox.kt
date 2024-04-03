@@ -1,6 +1,5 @@
 package com.whatrushka.impl.presentation.components
 
-import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -51,6 +50,7 @@ fun NewBox(
             Modifier
                 .fillMaxSize()
                 .padding(24.dp)
+
         ) {
             Icon(
                 imageVector = ImageVector.vectorResource(R.drawable.icon_bookmark),
@@ -60,8 +60,6 @@ fun NewBox(
                     .align(Alignment.TopEnd)
                     .size(26.dp)
             )
-
-            Log.d("m", article.toString())
 
             Column(
                 Modifier.align(Alignment.BottomStart)

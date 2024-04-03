@@ -8,10 +8,6 @@ abstract class BaseNavigator(
 ) {
     @SuppressLint("RestrictedApi")
     fun onBackButtonClick() {
-        navController.currentBackStack.value.let {
-            if (it.size > 3) {
-                navController.popBackStack()
-            }
-        }
+        navController.popBackStack()
     }
 }
