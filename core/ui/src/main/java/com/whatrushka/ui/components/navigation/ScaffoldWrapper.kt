@@ -14,6 +14,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.whatrushka.api.navigation.HomeRoute
 import com.whatrushka.core.ui.R
+import com.whatrushka.faetures.profile.api.navigatoin.ProfileRoute
+import com.whatrushka.navigation.Route
 
 val NavItems = listOf<NavigationItem>(
     NavigationItem(
@@ -27,35 +29,27 @@ val NavItems = listOf<NavigationItem>(
 //        route = BookmarksRoute,
 //        icon = R.drawable.icon_bookmarks_screen
 //    ),
-//    NavigationItem(
-//        route = ProfileRoute,
-//        icon = R.drawable.icon_profile_screen
-//    ),
+    NavigationItem(
+        route = ProfileRoute,
+        icon = R.drawable.icon_profile_screen
+    ),
 )
 
 @Composable
 fun ScaffoldWrapper(
+    screenRoute: Route,
     navController: NavHostController,
     content: @Composable (PaddingValues) -> Unit,
 ) {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
-    val currentRoute = navBackStackEntry?.destination?.route?.substringBefore("/")
 
     Scaffold(
         bottomBar = {
             BottomNavigationBar(
                 navItems = NavItems,
-                currentRoute = currentRoute
+                currentRoute = screenRoute
             ) {
-
-                Log.d("m", it.toString())
-                navController.navigate(it.path()) {
-                    popUpTo(navController.graph.id) {
-                        saveState = true
-                    }
-                    launchSingleTop = true
-                    restoreState = true
-                }
+                navController.navigate(it.path())
             }
         },
     ) { paddingValues ->

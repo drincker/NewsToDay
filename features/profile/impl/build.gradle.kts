@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.whatrushka.core.ui"
+    namespace = "com.whatrushka.features.profile.impl"
     compileSdk = 34
 
     defaultConfig {
@@ -34,6 +34,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.10"
@@ -46,12 +47,10 @@ android {
 }
 
 dependencies {
+    implementation(project(":core:ui"))
     implementation(project(":core:navigation"))
-    implementation(project(":features:home:api"))
-    implementation(project(":features:article:api"))
+    implementation(project(":features:profile:api"))
 
-    implementation(libs.compose.material)
-    implementation(libs.koin.androidx.compose)
     implementation(libs.navigation.compose)
 
     implementation(libs.androidx.core.ktx)
@@ -66,6 +65,7 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
-    implementation(project(":features:profile:api"))
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 }
