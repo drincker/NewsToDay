@@ -1,10 +1,15 @@
 package com.whatrushka.impl.presentation
 
+import android.content.Intent
+import android.net.Uri
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -17,11 +22,16 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.TextStyle
@@ -32,6 +42,7 @@ import coil.compose.AsyncImage
 import com.whatrushka.api.models.Article
 import com.whatrushka.core.ui.R
 import com.whatrushka.impl.navigation.ArticleNavigator
+import com.whatrushka.impl.presentation.components.ArticleTag
 import com.whatrushka.ui.theme.NewsToDayType
 import com.whatrushka.ui.theme.PrimaryGrey
 
@@ -41,6 +52,24 @@ fun ArticleScreen(
     navigator: ArticleNavigator,
     modifier: Modifier = Modifier
 ) {
+    val requestedUrl = remember { mutableStateOf<String?>(null) }
+
+    val context = LocalContext.current
+    val uriHandler = LocalUriHandler.current
+    val openLinkLauncher =
+        rememberLauncherForActivityResult(ActivityResultContracts.StartActivityForResult()) {}
+
+    LaunchedEffect(requestedUrl.value) {
+        requestedUrl.value?.let {
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(it))
+            if (intent.resolveActivity(context.packageManager) != null) {
+                openLinkLauncher.launch(intent)
+            } else {
+                uriHandler.openUri(it)
+            }
+        }
+    }
+
     val scrollState = rememberScrollState()
 
     Column(
@@ -52,7 +81,7 @@ fun ArticleScreen(
         Box(
             Modifier
                 .fillMaxWidth()
-                .height(310.dp)
+                .height(IntrinsicSize.Max)
         ) {
             AsyncImage(
                 contentDescription = null,
@@ -108,12 +137,20 @@ fun ArticleScreen(
                             contentDescription = null,
                             imageVector = ImageVector.vectorResource(R.drawable.icon_arrow_share),
                             tint = Color.White,
-                            modifier = Modifier.size(25.dp)
+                            modifier = Modifier
+                                .size(25.dp)
+                                .clickable {
+                                    requestedUrl.value = article.url
+                                }
                         )
                     }
                 }
 
                 Column {
+                    article.category?.let {
+                        ArticleTag(tag = it.name.replaceFirstChar { c -> c.uppercaseChar() })
+                        Spacer(Modifier.height(8.dp))
+                    }
                     Text(
                         article.title,
                         color = Color.White,
