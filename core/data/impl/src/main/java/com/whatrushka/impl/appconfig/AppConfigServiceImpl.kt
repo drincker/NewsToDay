@@ -27,6 +27,15 @@ class AppConfigServiceImpl(
         }
     }
 
+    override suspend fun isWelcome() =
+        getAppConfig().isWelcome
+
+    override suspend fun setIsWelcome(isWelcome: Boolean) {
+        context.appConfigDataStore.updateData {
+            getAppConfig().copy(isWelcome = isWelcome)
+        }
+    }
+    
     override suspend fun getConfiguredLanguage() =
         getAppConfig().language
 

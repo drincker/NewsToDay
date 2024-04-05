@@ -23,8 +23,9 @@ fun ScreenAppBar(
             style = NewsToDayType.TitleLarge
         )
 
+        Spacer(modifier = Modifier.height(8.dp))
+
         description?.let {
-            Spacer(modifier = Modifier.height(8.dp))
             Text(
                 text = it,
                 color = PrimaryGrey,
