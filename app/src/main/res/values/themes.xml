@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+    <style name="Theme.MySplashScreenC" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/purple_Darker</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/logo</item>
+        <item name="windowSplashScreenAnimationDuration">1000</item>
+        <item name="postSplashScreenTheme">@style/Theme.NewsToDay</item>
+    </style>
     <style name="Theme.NewsToDay" parent="android:Theme.Material.Light.NoActionBar" />
 </resources>
