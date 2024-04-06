@@ -26,10 +26,12 @@ fun MainNavigationScreen(
     val articleFeature: ArticleNavigation = koinInject()
     val onboardingFeature: OnboardingNavigation = koinInject()
 
+
     NavHost(
         navController,
         startDestination = "onboarding", // TODO: Add Welcome Check
     ) {
+
         registerFeature(homeFeature, navController, modifier)
         registerFeature(categoriesFeature, navController, modifier)
         registerFeature(bookmarksFeature, navController, modifier)

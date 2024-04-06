@@ -9,6 +9,6 @@ val onboardingModule = module {
 
     single<OnboardingNavigation> { OnboardingNavigationImpl() }
 
-    single<OnboardingNavigator> { navController -> OnboardingNavigator(navController.get()) }
+    single<OnboardingNavigator> { navController -> OnboardingNavigator(navController.get(), get()) }
 
 }

@@ -74,7 +74,13 @@ fun OnboardingScreen(
         }
         Spacer(modifier = Modifier.size(16.dp))
 
-        NextButton(pagerState = pagerState, pages)
+        NextButton(
+            pagerState = pagerState,
+            pages = pages,
+            modifier = modifier,
+            navigator = navigator,
+            navController = navController
+        )
         Spacer(modifier = Modifier.size(16.dp))
         PageIndicator(
             pagerState = pagerState,
