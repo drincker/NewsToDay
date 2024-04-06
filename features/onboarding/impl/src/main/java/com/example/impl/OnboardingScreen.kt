@@ -15,16 +15,22 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 import com.example.impl.componets.NextButton
 import com.example.impl.componets.Page
 import com.example.impl.componets.PageIndicator
 import com.example.impl.componets.SinglePage
+import com.example.impl.navigation.OnboardingNavigator
 import com.exemple.impl.R
 
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun PagerScreen() {
+fun OnboardingScreen(
+    navigator: OnboardingNavigator,
+    navController: NavHostController,
+    modifier: Modifier = Modifier
+) {
     val pages: List<Page> = listOf(
         Page(
             title = stringResource(R.string.welcome_title),
