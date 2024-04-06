@@ -1,4 +1,4 @@
-package com.whatrushka.faetures.profile.api.navigatoin
+package com.whatrushka.faetures.profile.api.profile.navigatoin
 
 import androidx.navigation.NavController
 import com.whatrushka.navigation.FeatureNavigation

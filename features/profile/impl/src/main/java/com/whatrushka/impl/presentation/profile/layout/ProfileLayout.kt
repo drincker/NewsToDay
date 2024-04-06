@@ -1,6 +1,7 @@
-package com.whatrushka.impl.presentation.layout
+package com.whatrushka.impl.presentation.profile.layout
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -25,7 +26,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.whatrushka.core.ui.R
-import com.whatrushka.impl.presentation.components.SettingBox
+import com.whatrushka.impl.presentation.profile.components.SettingBox
+import com.whatrushka.impl.presentation.profile.navigation.ProfileNavigator
 import com.whatrushka.ui.components.ScreenAppBar
 import com.whatrushka.ui.theme.NewsToDayType
 import com.whatrushka.ui.theme.PrimaryGrey
@@ -33,6 +35,7 @@ import com.whatrushka.ui.theme.PrimaryGrey
 
 @Composable
 fun ProfileLayout(
+    navigator: ProfileNavigator,
     navController: NavController,
     modifier: Modifier = Modifier
 ) {
@@ -100,7 +103,10 @@ fun ProfileLayout(
                     .align(Alignment.BottomCenter)
             ) {
                 SettingBox(
-                    icon = R.drawable.icon_arrow_select
+                    icon = R.drawable.icon_arrow_select,
+                    modifier = Modifier.clickable {
+                        navigator.navigateToTermsAndConditions(navController)
+                    }
                 ) {
                     Text(
                         text = "Terms & Conditions",

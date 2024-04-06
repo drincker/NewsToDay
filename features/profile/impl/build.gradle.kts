@@ -52,6 +52,7 @@ dependencies {
     implementation(project(":features:profile:api"))
 
     implementation(libs.navigation.compose)
+    implementation(libs.koin.androidx.compose)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)

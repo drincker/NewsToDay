@@ -1,13 +1,15 @@
-package com.whatrushka.impl.navigation
+package com.whatrushka.impl.presentation.profile.navigation
 
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
-import com.whatrushka.faetures.profile.api.navigatoin.ProfileNavigation
-import com.whatrushka.faetures.profile.api.navigatoin.ProfileRoute
-import com.whatrushka.impl.presentation.ProfileScreen
+import com.whatrushka.faetures.profile.api.profile.navigatoin.ProfileNavigation
+import com.whatrushka.faetures.profile.api.profile.navigatoin.ProfileRoute
+import com.whatrushka.impl.presentation.profile.ProfileScreen
+import org.koin.compose.koinInject
+import org.koin.core.parameter.parametersOf
 
 class ProfileNavigationImpl : ProfileNavigation {
 
@@ -22,7 +24,9 @@ class ProfileNavigationImpl : ProfileNavigation {
         modifier: Modifier
     ) {
         navGraphBuilder.composable(route.path()) {
-            ProfileScreen(navController, modifier)
+            val profileNavigator: ProfileNavigator = koinInject { parametersOf(navController) }
+
+            ProfileScreen(profileNavigator, navController, modifier)
         }
     }
 }

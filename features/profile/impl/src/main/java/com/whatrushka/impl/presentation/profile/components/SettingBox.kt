@@ -1,4 +1,4 @@
-package com.whatrushka.impl.presentation.components
+package com.whatrushka.impl.presentation.profile.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
