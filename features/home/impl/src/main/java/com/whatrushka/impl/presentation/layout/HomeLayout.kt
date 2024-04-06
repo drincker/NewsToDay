@@ -1,6 +1,5 @@
 package com.whatrushka.impl.presentation.layout
 
-import android.util.Log
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -121,9 +120,7 @@ fun HomeLayout(
                             .size(270.dp)
                             .clip(RoundedCornerShape(15.dp))
                             .clickable {
-                                Log.d("m", "navigating to ${it.title}")
                                 navigator.navigateToArticle(navController, it)
-                                Log.d("m", "end of navigating to ${it.title}")
                             }
                     )
 

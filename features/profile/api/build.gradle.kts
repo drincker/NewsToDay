@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.whatrushka.faetures.profile.api"
+    namespace = "com.whatrushka.features.profile.api"
     compileSdk = 34
 
     defaultConfig {
