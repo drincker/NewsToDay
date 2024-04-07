@@ -28,8 +28,7 @@ import com.exemple.impl.R
 @Composable
 fun OnboardingScreen(
     navigator: OnboardingNavigator,
-    navController: NavHostController,
-    modifier: Modifier = Modifier
+    navController: NavHostController
 ) {
     val pages: List<Page> = listOf(
         Page(
@@ -77,7 +76,6 @@ fun OnboardingScreen(
         NextButton(
             pagerState = pagerState,
             pages = pages,
-            modifier = modifier,
             navigator = navigator,
             navController = navController
         )

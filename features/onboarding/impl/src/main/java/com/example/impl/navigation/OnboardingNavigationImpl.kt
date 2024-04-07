@@ -16,8 +16,8 @@ class OnboardingNavigationImpl : OnboardingNavigation {
     override val route = OnboardingRoute
 
     override fun navigate(navController: NavController) =
-        navController.navigate(route.path())
-
+        navController.navigate(route.path()) {
+        }
     override fun registerGraph(
         navGraphBuilder: NavGraphBuilder,
         navController: NavHostController,
@@ -26,7 +26,7 @@ class OnboardingNavigationImpl : OnboardingNavigation {
         navGraphBuilder.composable(route.path()) {
             val onboardingNavigator: OnboardingNavigator = koinInject { parametersOf(navController) }
 
-            OnboardingScreen(onboardingNavigator, navController, modifier)
+            OnboardingScreen(onboardingNavigator, navController)
         }
     }
 

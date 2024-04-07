@@ -9,6 +9,6 @@ class OnboardingNavigator(
     private val navController: NavController,
     private val homeNavigation: HomeNavigation
     ) : BaseNavigator(navController) {
-    fun navigateToHome(navHostController: NavHostController, ) =
+    fun navigateToHome(navHostController: NavHostController ) =
         homeNavigation.navigate(navHostController)
 }

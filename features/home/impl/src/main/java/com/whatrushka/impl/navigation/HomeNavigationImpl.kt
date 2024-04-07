@@ -17,8 +17,11 @@ class HomeNavigationImpl : HomeNavigation {
 
     override val route = HomeRoute
 
-    override fun navigate(navController: NavController) =
-        navController.navigate(route.path())
+    override fun navigate(navController: NavController) {
+        navController.navigate(route.path()){
+
+        }
+    }
 
     override fun registerGraph(
         navGraphBuilder: NavGraphBuilder,

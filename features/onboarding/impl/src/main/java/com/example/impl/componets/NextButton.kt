@@ -28,8 +28,7 @@ fun NextButton(
     pagerState: PagerState,
     pages: List<Page>,
     navigator: OnboardingNavigator,
-    navController: NavHostController,
-    modifier: Modifier = Modifier
+    navController: NavHostController
 ){
     val scope: CoroutineScope = rememberCoroutineScope()
     val isLastPage = pagerState.currentPage == pages.size - 1
@@ -44,7 +43,6 @@ fun NextButton(
                 .padding(horizontal = 64.dp),
             onClick = { if (isLastPage) {
                 navigator.navigateToHome(navController)
-                //TODO: launch Screen
             } else {
                 scope.launch{ pagerState.animateScrollToPage(pagerState.currentPage + 1) }
             } }
