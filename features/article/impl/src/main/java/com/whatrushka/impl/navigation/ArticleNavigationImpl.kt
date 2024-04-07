@@ -22,7 +22,9 @@ class ArticleNavigationImpl : ArticleNavigation {
             it[ArticleRoute.KEYS.ARTICLE] = article
             Log.d("m", it.contains(ArticleRoute.KEYS.ARTICLE).toString())
         }
-        navigate(route.path())
+        navigate(route.path()){
+            launchSingleTop = true
+        }
     }
 
     override fun registerGraph(

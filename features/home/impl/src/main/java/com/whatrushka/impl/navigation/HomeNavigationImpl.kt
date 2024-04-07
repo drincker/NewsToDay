@@ -19,7 +19,8 @@ class HomeNavigationImpl : HomeNavigation {
 
     override fun navigate(navController: NavController) {
         navController.navigate(route.path()){
-
+            launchSingleTop = true
+            popUpTo(0)
         }
     }
 

@@ -17,6 +17,8 @@ class OnboardingNavigationImpl : OnboardingNavigation {
 
     override fun navigate(navController: NavController) =
         navController.navigate(route.path()) {
+            launchSingleTop = true
+            popUpTo(0)
         }
     override fun registerGraph(
         navGraphBuilder: NavGraphBuilder,
