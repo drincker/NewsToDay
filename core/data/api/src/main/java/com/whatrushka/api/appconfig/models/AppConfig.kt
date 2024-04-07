@@ -6,6 +6,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class AppConfig(
+    val isWelcome: Boolean = true,
     val language: Language = Language.RU,
     val favoriteCategories: Set<Category> = emptySet()
 )

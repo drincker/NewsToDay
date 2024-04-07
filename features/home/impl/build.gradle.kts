@@ -51,6 +51,7 @@ dependencies {
     implementation(project(":core:data:api"))
     implementation(project(":core:ui"))
     implementation(project(":features:home:api"))
+    implementation(project(":features:article:api"))
     implementation(project(":core:navigation"))
 
     implementation(libs.coil.compose)
@@ -65,11 +66,11 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
-
+    implementation("androidx.core:core-splashscreen:1.0.1")
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
+    implementation(project(":features:home:api"))
+    implementation(project(":core:domain:newsapi:api"))
     androidTestImplementation(libs.androidx.espresso.core)
 }

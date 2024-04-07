@@ -17,7 +17,7 @@ object NewsToDayType {
     val SemiLight = TextStyle(
         fontFamily = FontFamily.Default,
         fontWeight = FontWeight.W400,
-        fontSize = 14.sp,
+        fontSize = 18.sp,
         lineHeight = 24.sp,
         letterSpacing = 0.5.sp
     )
@@ -33,7 +33,7 @@ object NewsToDayType {
     val SemiCommon = TextStyle(
         fontFamily = FontFamily.Default,
         fontWeight = FontWeight.W600,
-        fontSize = 16.sp,
+        fontSize = 18.sp,
         lineHeight = 24.sp,
         letterSpacing = 0.5.sp
     )

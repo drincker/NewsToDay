@@ -5,6 +5,10 @@ import com.whatrushka.api.models.static.Language
 
 interface AppConfigService {
 
+    suspend fun isWelcome(): Boolean
+
+    suspend fun setIsWelcome(isWelcome: Boolean)
+
     suspend fun setLanguage(language: Language)
 
     suspend fun getConfiguredLanguage(): Language

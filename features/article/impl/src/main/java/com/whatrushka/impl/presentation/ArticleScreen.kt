@@ -1,9 +1,15 @@
 package com.whatrushka.impl.presentation
 
+import android.content.Intent
+import android.net.Uri
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -16,48 +22,54 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.whatrushka.api.models.Article
-import com.whatrushka.api.models.Source
 import com.whatrushka.core.ui.R
+import com.whatrushka.impl.navigation.ArticleNavigator
+import com.whatrushka.impl.presentation.components.ArticleTag
 import com.whatrushka.ui.theme.NewsToDayType
 import com.whatrushka.ui.theme.PrimaryGrey
-
-@Preview
-@Composable
-fun ArticleScreenPreview() {
-    ArticleScreen(
-        modifier = Modifier.padding(16.dp),
-        article = Article(
-            Source("some", "some"),
-            author = "John Doe",
-            title = "The Gradle Error",
-            description = "Lorem Ipsum",
-            url = "https://google.com/",
-            urlToImage = "https://mykaleidoscope.ru/x/uploads/posts/2022-10/1666389897_62-mykaleidoscope-ru-p-klassnaya-priroda-oboi-67.jpg",
-            publishedAt = "2024-22-03",
-            content = loremIpsum
-        )
-    )
-}
 
 @Composable
 fun ArticleScreen(
     article: Article,
+    navigator: ArticleNavigator,
     modifier: Modifier = Modifier
 ) {
+    val requestedUrl = remember { mutableStateOf<String?>(null) }
+
+    val context = LocalContext.current
+    val uriHandler = LocalUriHandler.current
+    val openLinkLauncher =
+        rememberLauncherForActivityResult(ActivityResultContracts.StartActivityForResult()) {}
+
+    LaunchedEffect(requestedUrl.value) {
+        requestedUrl.value?.let {
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(it))
+            if (intent.resolveActivity(context.packageManager) != null) {
+                openLinkLauncher.launch(intent)
+            } else {
+                uriHandler.openUri(it)
+            }
+        }
+    }
+
     val scrollState = rememberScrollState()
 
     Column(
@@ -69,7 +81,7 @@ fun ArticleScreen(
         Box(
             Modifier
                 .fillMaxWidth()
-                .height(310.dp)
+                .height(IntrinsicSize.Max)
         ) {
             AsyncImage(
                 contentDescription = null,
@@ -94,7 +106,9 @@ fun ArticleScreen(
 
             Column(
                 verticalArrangement = Arrangement.SpaceBetween,
-                modifier = modifier.fillMaxSize()
+                modifier = Modifier
+                    .padding(16.dp)
+                    .fillMaxSize()
             ) {
 
                 Row(
@@ -106,24 +120,37 @@ fun ArticleScreen(
                     Icon(
                         contentDescription = null,
                         imageVector = ImageVector.vectorResource(R.drawable.icon_arrow_back),
-                        modifier = Modifier.size(25.dp)
+                        tint = Color.White,
+                        modifier = Modifier
+                            .size(25.dp)
+                            .clickable { navigator.onBackButtonClick() }
                     )
                     Column {
                         Icon(
                             contentDescription = null,
                             imageVector = ImageVector.vectorResource(R.drawable.icon_bookmark),
+                            tint = Color.White,
                             modifier = Modifier.size(25.dp)
                         )
                         Spacer(modifier = Modifier.height(20.dp))
                         Icon(
                             contentDescription = null,
                             imageVector = ImageVector.vectorResource(R.drawable.icon_arrow_share),
-                            modifier = Modifier.size(25.dp)
+                            tint = Color.White,
+                            modifier = Modifier
+                                .size(25.dp)
+                                .clickable {
+                                    requestedUrl.value = article.url
+                                }
                         )
                     }
                 }
 
                 Column {
+                    article.category?.let {
+                        ArticleTag(tag = it.name.replaceFirstChar { c -> c.uppercaseChar() })
+                        Spacer(Modifier.height(8.dp))
+                    }
                     Text(
                         article.title,
                         color = Color.White,
@@ -136,6 +163,7 @@ fun ArticleScreen(
                             color = Color.White,
                             style = NewsToDayType.SemiCommon
                         )
+                        Spacer(modifier = Modifier.height(10.dp))
                         Text(
                             "Author",
                             color = PrimaryGrey,

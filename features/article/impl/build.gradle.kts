@@ -50,8 +50,11 @@ dependencies {
     implementation(project(":core:domain:newsapi:api"))
     implementation(project(":core:ui"))
     implementation(project(":core:navigation"))
+    implementation(project(":features:article:api"))
 
     implementation(libs.navigation.compose)
+    implementation(libs.koin.androidx.compose)
+    implementation(libs.kotlinx.serialization.json)
     implementation(libs.coil.compose)
 
     implementation(libs.androidx.core.ktx)
@@ -66,7 +69,5 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 }
