@@ -1,31 +1,109 @@
 [versions]
 agp = "8.3.1"
-kotlin = "1.9.0"
+kotlin = "1.9.22"
 coreKtx = "1.12.0"
 junit = "4.13.2"
 junitVersion = "1.1.5"
 espressoCore = "3.5.1"
 lifecycleRuntimeKtx = "2.7.0"
 activityCompose = "1.8.2"
-composeBom = "2023.08.00"
+composeBom = "2024.03.00"
+composeRuntime = "1.5.1"
+composeNav = "2.7.7"
+
+appcompat = "1.6.1"
+material = "1.11.0"
+composeMaterial = "1.6.4"
+
+# Proto DataStore
+protoDataStore = "1.0.0"
+
+# Async Images
+coil = "2.6.0"
+
+# DI : Koin
+koin = "3.5.3"
+
+# Network : Ktor
+ktor = "2.3.9"
+
+
+sercor="1.6.3"
+ser="1.5.1"
+
+kotlin-plugin-serialization = "1.9.23"
+kotlin-serialization = "1.6.3"
+junitJunit = "4.13.2"
+androidxJunit = "1.1.5"
+navigationRuntimeKtx = "2.7.7"
+
+kotlinx-collections="0.3.5"
 
 [libraries]
+
+
+
+# Proto DataStore
+androidx-datastore = { group = "androidx.datastore", name = "datastore", version.ref = "protoDataStore" }
+
+# Async Images
+coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
+
+# DI : Koin
+koin-androidx-compose = { group = "io.insert-koin", name = "koin-androidx-compose", version.ref = "koin" }
+
+# Netwrok : Ktor
+ktor-client-content-negotiation = { group = "io.ktor", name = "ktor-client-content-negotiation", version.ref = "ktor" }
+ktor-logging = { group = "io.ktor", name = "ktor-client-logging", version.ref = "ktor" }
+ktor-client-serialization = { group = "io.ktor", name = "ktor-client-serialization", version.ref = "ktor" }
+ktor-client-cio = { group = "io.ktor", name = "ktor-client-cio", version.ref = "ktor" }
+ktor-client-core = { group = "io.ktor", name = "ktor-client-core", version.ref = "ktor" }
+
+#
+#Добавляет библиотеку Gradle:
+#org.jetbrains.kotlinx:kotlinx-serialization-core-jvm:1.5.1» к зависимостям модуля
+#«NewsToDay.features.bookmarks.impl.main» и импортирует
+#неразрешенные «SerializersKt»
+
+kotlinx-serialization-core-jvm={group="org.jetbrains.kotlinx",name="kotlinx-serialization-core-jvm",version.ref = "sercor"}
+kotlinx-serialzation-jvm={group="org.jetbrains.kotlinx",name="kotlinx-serialization-core-jvm",version.ref = "ser"}
+ktor-serialization-kotlinx-json = { group = "io.ktor", name = "ktor-serialization-kotlinx-json", version.ref = "ktor" }
+
+kotlinx-collections-immutable={group="org.jetbrains.kotlinx",name="kotlinx-collections-immutable",version.ref="kotlinx-collections"}
+kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlin-serialization" }
+
+compose-material = { group = "androidx.compose.material", name = "material", version.ref = "composeMaterial" }
+
+navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "composeNav" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
-junit = { group = "junit", name = "junit", version.ref = "junit" }
-androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
+
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
 androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
+androidx-compose-runtime = { group = "androidx.compose.runtime", name = "runtime-android", version.ref = "composeRuntime" }
 androidx-ui = { group = "androidx.compose.ui", name = "ui" }
 androidx-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
 androidx-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
 androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
-androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
+
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+junit = { group = "junit", name = "junit", version.ref = "junitJunit" }
+androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidxJunit" }
+androidx-navigation-runtime-ktx = { group = "androidx.navigation", name = "navigation-runtime-ktx", version.ref = "navigationRuntimeKtx" }
 
 [plugins]
+
+# Ktor
+ktor-plugin = { id = "io.ktor.plugin", version.ref = "ktor" }
+
+# Json
+kotlin-plugin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin-plugin-serialization" }
+
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+androidLibrary = { id = "com.android.library", version.ref = "agp" }
 

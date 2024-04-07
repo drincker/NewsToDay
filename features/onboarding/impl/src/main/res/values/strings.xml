@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="welcome_title">News ToDay</string>
+    <string name="welcome_description">Будьте в курсе последних событий.</string>
+
+    <string name="main_title">Главный экран</string>
+    <string name="main_description">Отображение популярных новостей, поиск по запросу и категории.</string>
+
+    <string name="categories_title">Категории</string>
+    <string name="categories_description">Выбор категорий новостей для отображения.</string>
+
+    <string name="bookmarks_title">Избранное</string>
+    <string name="bookmarks_description">Добавление и удаление новостей.</string>
+
+    <string name="profile_title">Личный кабинет</string>
+    <string name="profile_description">Настройки пользователя и языка приложения.</string>
+
+    <string name="button_next">Далее</string>
+    <string name="button_get_started">Начать</string>
+
+
+
+
+</resources>

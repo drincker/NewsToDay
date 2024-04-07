@@ -40,7 +40,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
+        kotlinCompilerExtensionVersion = "1.5.10"
     }
     packaging {
         resources {
@@ -50,6 +50,30 @@ android {
 }
 
 dependencies {
+    implementation(project(":core:ui"))
+    implementation(project(":core:data:di"))
+    implementation(project(":core:domain:newsapi:di"))
+    implementation(project(":core:navigation"))
+
+    implementation(project(":features:home:di"))
+    implementation(project(":features:home:api"))
+
+    implementation(project(":features:article:di"))
+    implementation(project(":features:article:api"))
+
+    implementation(project(":features:profile:di"))
+    implementation(project(":features:profile:api"))
+
+    implementation(project(":features:onboarding:api"))
+    implementation(project(":features:onboarding:di"))
+
+    implementation(project(":features:bookmarks:api"))
+    implementation(project(":features:bookmarks:di"))
+
+    implementation("androidx.core:core-splashscreen:1.0.1")
+
+    implementation(libs.koin.androidx.compose)
+    implementation(libs.navigation.compose)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -59,11 +83,5 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
-    androidTestImplementation(platform(libs.androidx.compose.bom))
-    androidTestImplementation(libs.androidx.ui.test.junit4)
-    debugImplementation(libs.androidx.ui.tooling)
-    debugImplementation(libs.androidx.ui.test.manifest)
+    implementation(project(":core:data:api"))
 }
