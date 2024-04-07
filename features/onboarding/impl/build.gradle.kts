@@ -1,18 +1,15 @@
 plugins {
-    alias(libs.plugins.androidApplication)
+    alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsKotlinAndroid)
 }
 
 android {
-    namespace = "pl.drincker.newstoday"
+    namespace = "com.exemple.impl"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "pl.drincker.newstoday"
+
         minSdk = 24
-        targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -38,6 +35,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.10"
@@ -50,28 +48,6 @@ android {
 }
 
 dependencies {
-    implementation(project(":core:ui"))
-    implementation(project(":core:data:di"))
-    implementation(project(":core:domain:newsapi:di"))
-    implementation(project(":core:navigation"))
-
-    implementation(project(":features:home:di"))
-    implementation(project(":features:home:api"))
-
-    implementation(project(":features:article:di"))
-    implementation(project(":features:article:api"))
-    
-    implementation(project(":features:profile:di"))
-    implementation(project(":features:profile:api"))
-
-    implementation(project(":features:onboarding:api"))
-    implementation(project(":features:onboarding:di"))
-    
-    implementation("androidx.core:core-splashscreen:1.0.1")
-
-    implementation(libs.koin.androidx.compose)
-    implementation(libs.navigation.compose)
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -80,4 +56,22 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(libs.navigation.compose)
+    implementation(libs.koin.androidx.compose)
+
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.material)
+//    implementation(libs.androidx.navigation.runtime.ktx)
+    implementation(project(":core:navigation"))
+    implementation(project(":features:article:api"))
+    implementation(project(":core:domain:newsapi:api"))
+    implementation(project(":core:domain:newsapi:api"))
+    implementation(project(":features:home:api"))
+    implementation(project(":features:home:impl"))
+    implementation(project(":features:home:impl"))
+    implementation(libs.navigation.compose)
+    implementation(project(":features:onboarding:api"))
+    implementation(project(":features:onboarding:api"))
+
 }

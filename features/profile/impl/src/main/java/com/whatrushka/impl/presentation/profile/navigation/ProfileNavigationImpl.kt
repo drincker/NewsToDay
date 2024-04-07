@@ -15,7 +15,9 @@ class ProfileNavigationImpl : ProfileNavigation {
 
     override val route = ProfileRoute
     override fun navigate(navController: NavController) {
-        navController.navigate(route.path())
+        navController.navigate(route.path()){
+            launchSingleTop = true
+        }
     }
 
     override fun registerGraph(
