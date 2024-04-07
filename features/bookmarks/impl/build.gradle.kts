@@ -1,17 +1,18 @@
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    alias(libs.plugins.kotlin.plugin.serialization)
 }
 
 android {
     buildFeatures {
-    compose = true
-}
-    namespace = "com.example.impl"
+        compose = true
+    }
+    namespace = "com.example.features.bookmarks.impl"
     compileSdk = 34
 
     composeOptions {
-            kotlinCompilerExtensionVersion ="1.5.10"
+        kotlinCompilerExtensionVersion = "1.5.10"
     }
 
     defaultConfig {
@@ -44,6 +45,13 @@ android {
 }
 
 dependencies {
+    implementation(project(":core:navigation"))
+    implementation(project(":core:domain:newsapi:api"))
+    implementation(project(":core:data:api"))
+    implementation(project(":features:bookmarks:api"))
+    implementation(project(":core:ui"))
+    
+
     implementation(libs.coil.compose)
     implementation(libs.navigation.compose)
 
@@ -58,9 +66,18 @@ dependencies {
     implementation(libs.androidx.material3)
 
 
+    implementation(libs.androidx.datastore)
+    implementation(libs.ktor.serialization.kotlinx.json)
+    implementation(libs.androidx.compose.runtime)
+    implementation(libs.kotlinx.collections.immutable)
+    implementation(libs.kotlinx.serialization.core.jvm)
+    implementation(libs.kotlinx.serialzation.jvm)
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
+
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

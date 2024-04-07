@@ -8,7 +8,7 @@ espressoCore = "3.5.1"
 lifecycleRuntimeKtx = "2.7.0"
 activityCompose = "1.8.2"
 composeBom = "2024.03.00"
-composeRuntime = "1.6.4"
+composeRuntime = "1.5.1"
 composeNav = "2.7.7"
 
 appcompat = "1.6.1"
@@ -27,10 +27,18 @@ koin = "3.5.3"
 # Network : Ktor
 ktor = "2.3.9"
 
+
+sercor="1.6.3"
+ser="1.5.1"
+
 kotlin-plugin-serialization = "1.9.23"
 kotlin-serialization = "1.6.3"
 
+kotlinx-collections="0.3.5"
+
 [libraries]
+
+
 
 # Proto DataStore
 androidx-datastore = { group = "androidx.datastore", name = "datastore", version.ref = "protoDataStore" }
@@ -47,8 +55,18 @@ ktor-logging = { group = "io.ktor", name = "ktor-client-logging", version.ref = 
 ktor-client-serialization = { group = "io.ktor", name = "ktor-client-serialization", version.ref = "ktor" }
 ktor-client-cio = { group = "io.ktor", name = "ktor-client-cio", version.ref = "ktor" }
 ktor-client-core = { group = "io.ktor", name = "ktor-client-core", version.ref = "ktor" }
+
+#
+#Добавляет библиотеку Gradle:
+#org.jetbrains.kotlinx:kotlinx-serialization-core-jvm:1.5.1» к зависимостям модуля
+#«NewsToDay.features.bookmarks.impl.main» и импортирует
+#неразрешенные «SerializersKt»
+
+kotlinx-serialization-core-jvm={group="org.jetbrains.kotlinx",name="kotlinx-serialization-core-jvm",version.ref = "sercor"}
+kotlinx-serialzation-jvm={group="org.jetbrains.kotlinx",name="kotlinx-serialization-core-jvm",version.ref = "ser"}
 ktor-serialization-kotlinx-json = { group = "io.ktor", name = "ktor-serialization-kotlinx-json", version.ref = "ktor" }
 
+kotlinx-collections-immutable={group="org.jetbrains.kotlinx",name="kotlinx-collections-immutable",version.ref="kotlinx-collections"}
 kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlin-serialization" }
 
 navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "composeNav" }

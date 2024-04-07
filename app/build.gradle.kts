@@ -53,9 +53,11 @@ dependencies {
     implementation(project(":core:data:di"))
     implementation(project(":core:domain:newsapi:di"))
     implementation(project(":features:home:di"))
-
+    implementation(project(":features:bookmarks:api"))
+    implementation(project(":features:bookmarks:impl"))
     implementation(project(":features:home:impl"))
     implementation(project(":features:home:api"))
+
 
     implementation(libs.koin.androidx.compose)
 
@@ -67,7 +69,7 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
-    implementation(project(":features:bookmarks:impl"))
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
