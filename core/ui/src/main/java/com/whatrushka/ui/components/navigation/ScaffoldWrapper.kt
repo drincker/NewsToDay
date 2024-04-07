@@ -1,6 +1,5 @@
 package com.whatrushka.ui.components.navigation
 
-import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
@@ -14,7 +13,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.whatrushka.api.navigation.HomeRoute
 import com.whatrushka.core.ui.R
-import com.whatrushka.faetures.profile.api.navigatoin.ProfileRoute
+import com.whatrushka.faetures.profile.api.profile.navigatoin.ProfileRoute
 import com.whatrushka.navigation.Route
 
 val NavItems = listOf<NavigationItem>(

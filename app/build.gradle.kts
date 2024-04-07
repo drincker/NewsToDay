@@ -63,6 +63,9 @@ dependencies {
     
     implementation(project(":features:profile:di"))
     implementation(project(":features:profile:api"))
+
+    implementation(project(":features:onboarding:api"))
+    implementation(project(":features:onboarding:di"))
     
     implementation("androidx.core:core-splashscreen:1.0.1")
 
@@ -77,11 +80,4 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
-    implementation(project(":features:onboarding:api"))
-    implementation(project(":features:onboarding:di"))
-
-    androidTestImplementation(libs.androidx.espresso.core)
-    androidTestImplementation(platform(libs.androidx.compose.bom))
-    debugImplementation(libs.androidx.ui.tooling)
-    debugImplementation(libs.androidx.ui.test.manifest)
 }

@@ -37,6 +37,7 @@ dependencies {
     implementation(project(":features:profile:impl"))
 
     implementation(libs.koin.androidx.compose)
+    implementation(libs.navigation.compose)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
