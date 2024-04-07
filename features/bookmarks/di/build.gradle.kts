@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.di"
+    namespace = "com.whatrushka.bookmarks.di"
     compileSdk = 34
 
     defaultConfig {
@@ -33,6 +33,12 @@ android {
 }
 
 dependencies {
+    implementation(project(":features:bookmarks:api"))
+    implementation(project(":features:bookmarks:impl"))
+    implementation(project(":features:article:api"))
+
+    implementation(libs.koin.androidx.compose)
+    implementation(libs.navigation.compose)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

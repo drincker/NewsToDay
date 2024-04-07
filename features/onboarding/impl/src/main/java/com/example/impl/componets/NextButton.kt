@@ -1,7 +1,6 @@
 package com.example.impl.componets
 
 
-
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -19,6 +18,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.impl.navigation.OnboardingNavigator
 import com.exemple.impl.R
+import com.whatrushka.api.appconfig.AppConfigService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -28,24 +28,28 @@ fun NextButton(
     pagerState: PagerState,
     pages: List<Page>,
     navigator: OnboardingNavigator,
-    navController: NavHostController
-){
+    navController: NavHostController,
+    appConfigService: AppConfigService
+) {
     val scope: CoroutineScope = rememberCoroutineScope()
     val isLastPage = pagerState.currentPage == pages.size - 1
-    Row (
+    Row(
         modifier = Modifier.fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.Center
-    ){
+    ) {
         Button(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 64.dp),
-            onClick = { if (isLastPage) {
-                navigator.navigateToHome(navController)
-            } else {
-                scope.launch{ pagerState.animateScrollToPage(pagerState.currentPage + 1) }
-            } }
+            onClick = {
+                if (isLastPage) {
+                    scope.launch { appConfigService.setIsWelcome(false) }
+                    navigator.navigateToHome(navController)
+                } else {
+                    scope.launch { pagerState.animateScrollToPage(pagerState.currentPage + 1) }
+                }
+            }
         ) {
             Text(
                 text = if (isLastPage) stringResource(R.string.button_get_started)

@@ -122,7 +122,9 @@ fun HomeLayout(
                             .clickable {
                                 navigator.navigateToArticle(navController, it)
                             }
-                    )
+                    ) {
+                        viewModel.changeArticleFlag(it)
+                    }
 
                     Spacer(Modifier.width(16.dp))
                 }

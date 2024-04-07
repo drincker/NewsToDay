@@ -48,8 +48,10 @@ android {
 
 dependencies {
     implementation(project(":core:ui"))
+    implementation(project(":core:data:api"))
     implementation(project(":core:navigation"))
     implementation(project(":features:profile:api"))
+    implementation(project(":features:onboarding:api"))
 
     implementation(libs.navigation.compose)
     implementation(libs.koin.androidx.compose)

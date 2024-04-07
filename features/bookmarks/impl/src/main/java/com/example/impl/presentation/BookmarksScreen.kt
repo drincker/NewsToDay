@@ -1,15 +1,19 @@
 package com.example.impl.presentation
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -17,24 +21,34 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 import com.example.features.bookmarks.impl.R
-import com.whatrushka.core.ui.R as coreR
-import com.whatrushka.api.appbookmarks.AppArticlesService
+import com.example.impl.navigation.BookmarksNavigator
+import com.example.navigation.BookmarksRoute
+import com.whatrushka.api.appconfig.AppConfigService
 import com.whatrushka.api.models.Article
 import com.whatrushka.ui.components.ScreenAppBar
+import com.whatrushka.ui.components.navigation.ScaffoldWrapper
+import com.whatrushka.ui.theme.LightGrey
+import com.whatrushka.core.ui.R as coreR
 
 
 @Composable
 fun BookmarksScreen(
-    bookmarksService: AppArticlesService,
+    navController: NavHostController,
+    bookmarksService: AppConfigService,
+    navigator: BookmarksNavigator,
     modifier: Modifier
 ) {
     val ballArticles = remember { mutableStateOf<List<Article>>(emptyList()) }
@@ -42,58 +56,31 @@ fun BookmarksScreen(
         ballArticles.value = bookmarksService.getPinned()
     }
 
-    Column(modifier) {
-        Column(
-            modifier = Modifier.padding(start = 20.dp, bottom = 30.dp, top = 30.dp),
-            verticalArrangement = Arrangement.Bottom,
-        ) {
+    ScaffoldWrapper(BookmarksRoute, navController) {
+        Column(modifier.padding(it)) {
             ScreenAppBar(title = "Bookmarks", description = "Saved articles to the library")
-
-        }
-        Spacer(modifier = Modifier.height(20.dp))
-        if (ballArticles.value.isNotEmpty()) {
-            LazyColumn {
-                items(ballArticles.value.size) {
-                    BookMarkCard(ballArticles.value[it])
+            if (ballArticles.value.isNotEmpty()) {
+                LazyColumn {
+                    items(ballArticles.value.size) { index ->
+                        BookMarkCard(ballArticles.value[index]) { article ->
+                            navigator.navigateToArticle(article)
+                        }
+                        Spacer(Modifier.height(16.dp))
+                    }
                 }
+            } else {
+                EmptyState()
             }
-        } else {
-            NoOpigator()
         }
-
     }
 }
 
 @Composable
-fun NoOpigator() {
-    // Column {
-    Column(
-        modifier = Modifier.padding(start = 20.dp, bottom = 30.dp, top = 30.dp),
-        verticalArrangement = Arrangement.Top,
-    ) {
-        Text(
-            text = "Bookmarks",
-            style = TextStyle(
-                fontSize = 24.sp,
-                color = Color(0xFF333647),
-                fontWeight = FontWeight.Bold
-            )
-        )
-        Text(
-            text = "Saved articles to the library",
-            //modifier = Modifier.padding(all = 4.dp),
-            style = TextStyle(
-                fontSize = 16.sp,
-                textAlign = TextAlign.Center,
-                color = Color(0xFF7C82A1)
-            )
-        )
-
-
-    }
+fun EmptyState() {
     Column(
         verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier.fillMaxSize()
     ) {
         Image(
             painter = painterResource(id = R.drawable.book),
@@ -109,55 +96,54 @@ fun NoOpigator() {
             ),
             modifier = Modifier.padding(start = 100.dp, end = 100.dp)
         )
-        // }
     }
 }
 
 @Composable
-fun PreviewConversation() {
-
-    NoOpigator()
-    //Conversation(SampleData.conversationSample)
-}
-
-@Composable
-fun BookMarkCard(tad: Article) {
-    Row(modifier = Modifier.padding(start = 20.dp, end = 20.dp, bottom = 20.dp)) {
-        tad.urlToImage?.let {
-            AsyncImage(
-                model = it,
-                placeholder = painterResource(id = coreR.drawable.image_placeholder),
-                contentDescription = null,
-                modifier = Modifier
-                    .size(96.dp)
-                //.clip(CircleShape)
-                //.border(1.5.dp, MaterialTheme.colorScheme.secondary, CircleShape)
+fun BookMarkCard(
+    article: Article,
+    onClick: (Article) -> Unit
+) {
+    Row(
+        Modifier
+            .padding(0.dp, 16.dp)
+            .clip(RoundedCornerShape(15.dp))
+            .background(LightGrey)
+            .clickable {
+                onClick(article)
+            }
+    ) {
+        AsyncImage(
+            model = article.urlToImage,
+            placeholder = painterResource(coreR.drawable.image_placeholder),
+            contentDescription = null,
+            contentScale = ContentScale.Crop,
+            modifier = Modifier
+                .size(96.dp)
+                .clip(RoundedCornerShape(10.dp))
+        )
+        Spacer(modifier = Modifier.width(8.dp))
+        Column {
+            Text(
+                text = (article.category?.name ?: "No category"),
+                style = TextStyle(
+                    fontSize = 14.sp,
+                    color = Color(0xFF7C82A1),
+                ),
+            )
+            Spacer(modifier = Modifier.height(10.dp))
+            Text(
+                text = article.title,
+                maxLines = 2,
+                overflow = TextOverflow.Ellipsis,
+                style = TextStyle(
+                    fontSize = 16.sp,
+                    color = Color(0xFF333647), fontWeight = FontWeight.Bold
+                )
             )
         }
-        Spacer(modifier = Modifier.width(8.dp))
-        Column() {
-            tad.author?.let {
-                Text(
-                    text = it,
-                    style = TextStyle(
-                        fontSize = 14.sp,
-                        color = Color(0xFF7C82A1),
-                    ),
-                )
-            }
-            Spacer(modifier = Modifier.height(10.dp))
-            tad.publishedAt?.let {
-                Text(
-                    text = it,
-                    //modifier = Modifier.padding(all = 4.dp),
-                    style = TextStyle(
-                        fontSize = 16.sp,
-                        color = Color(0xFF333647), fontWeight = FontWeight.Bold
-                    )
-                )
-            }
-        }
     }
+
 }
 
 

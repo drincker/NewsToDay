@@ -1,5 +1,6 @@
 package com.whatrushka.impl
 
+import android.util.Log
 import com.whatrushka.api.ApiService
 import com.whatrushka.api.models.Article
 import com.whatrushka.api.models.NewsResponse
@@ -8,6 +9,7 @@ import com.whatrushka.api.models.static.Language
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.get
+import io.ktor.client.statement.request
 
 class ApiServiceImpl(
     private val client: HttpClient,
@@ -51,6 +53,9 @@ class ApiServiceImpl(
             append("page", page.toString())
             append("pageSize", pageSize.toString())
         }
+    }.apply {
+        Log.d("m", body<String>())
+        Log.d("m", request.url.toString())
     }.body<NewsResponse>().articles
         .apply {
             map {

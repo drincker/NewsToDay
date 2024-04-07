@@ -34,6 +34,7 @@ android {
 
 dependencies {
     implementation(project(":features:profile:api"))
+    implementation(project(":features:onboarding:api"))
     implementation(project(":features:profile:impl"))
 
     implementation(libs.koin.androidx.compose)

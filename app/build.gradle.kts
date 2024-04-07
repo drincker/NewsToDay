@@ -60,13 +60,16 @@ dependencies {
 
     implementation(project(":features:article:di"))
     implementation(project(":features:article:api"))
-    
+
     implementation(project(":features:profile:di"))
     implementation(project(":features:profile:api"))
 
     implementation(project(":features:onboarding:api"))
     implementation(project(":features:onboarding:di"))
-    
+
+    implementation(project(":features:bookmarks:api"))
+    implementation(project(":features:bookmarks:di"))
+
     implementation("androidx.core:core-splashscreen:1.0.1")
 
     implementation(libs.koin.androidx.compose)
@@ -80,4 +83,5 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(project(":core:data:api"))
 }

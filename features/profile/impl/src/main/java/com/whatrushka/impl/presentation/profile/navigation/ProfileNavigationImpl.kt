@@ -5,6 +5,7 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
+import com.whatrushka.api.appconfig.AppConfigService
 import com.whatrushka.faetures.profile.api.profile.navigatoin.ProfileNavigation
 import com.whatrushka.faetures.profile.api.profile.navigatoin.ProfileRoute
 import com.whatrushka.impl.presentation.profile.ProfileScreen
@@ -15,7 +16,7 @@ class ProfileNavigationImpl : ProfileNavigation {
 
     override val route = ProfileRoute
     override fun navigate(navController: NavController) {
-        navController.navigate(route.path()){
+        navController.navigate(route.path()) {
             launchSingleTop = true
         }
     }
@@ -27,8 +28,9 @@ class ProfileNavigationImpl : ProfileNavigation {
     ) {
         navGraphBuilder.composable(route.path()) {
             val profileNavigator: ProfileNavigator = koinInject { parametersOf(navController) }
+            val appConfigService: AppConfigService = koinInject()
 
-            ProfileScreen(profileNavigator, navController, modifier)
+            ProfileScreen(profileNavigator, navController, appConfigService, modifier)
         }
     }
 }

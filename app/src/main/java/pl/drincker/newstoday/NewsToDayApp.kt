@@ -2,8 +2,9 @@ package pl.drincker.newstoday
 
 import android.app.Application
 import com.example.di.onboardingModule
-import com.whatrushka.di.appConfigModule
+import com.whatrushka.bookmarks.di.bookmarksModule
 import com.whatrushka.di.articleModule
+import com.whatrushka.di.dataModule
 import com.whatrushka.di.homeModule
 import com.whatrushka.di.newsApiModule
 import com.whatrushka.features.profile.di.profileModule
@@ -20,12 +21,13 @@ class NewsToDayApp : Application() {
             androidContext(this@NewsToDayApp)
             androidLogger(Level.DEBUG)
             modules(
-                appConfigModule,
+                dataModule,
                 newsApiModule,
                 homeModule,
                 articleModule,
                 profileModule,
-                onboardingModule
+                onboardingModule,
+                bookmarksModule
             )
         }
     }

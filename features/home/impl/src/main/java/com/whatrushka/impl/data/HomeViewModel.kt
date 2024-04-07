@@ -41,6 +41,12 @@ class HomeViewModel(
         getNews()
     }
 
+    fun changeArticleFlag(article: Article) {
+        viewModelScope.launch {
+            appConfigService.changeArticleFlag(article)
+        }
+    }
+
     fun getNews() {
         viewModelScope.launch {
             val articles = mutableListOf<Article>()

@@ -67,5 +67,6 @@ dependencies {
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(project(":features:profile:api"))
+    implementation(project(":features:bookmarks:api"))
     androidTestImplementation(libs.androidx.espresso.core)
 }

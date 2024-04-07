@@ -25,6 +25,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
@@ -38,22 +39,27 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.zIndex
 import coil.compose.AsyncImage
+import com.whatrushka.api.appconfig.AppConfigService
 import com.whatrushka.api.models.Article
 import com.whatrushka.core.ui.R
 import com.whatrushka.impl.navigation.ArticleNavigator
 import com.whatrushka.impl.presentation.components.ArticleTag
 import com.whatrushka.ui.theme.NewsToDayType
 import com.whatrushka.ui.theme.PrimaryGrey
+import kotlinx.coroutines.launch
 
 @Composable
 fun ArticleScreen(
     article: Article,
     navigator: ArticleNavigator,
+    appConfigService: AppConfigService,
     modifier: Modifier = Modifier
 ) {
     val requestedUrl = remember { mutableStateOf<String?>(null) }
 
+    val scope = rememberCoroutineScope()
     val context = LocalContext.current
     val uriHandler = LocalUriHandler.current
     val openLinkLauncher =
@@ -88,7 +94,12 @@ fun ArticleScreen(
                 model = article.urlToImage,
                 placeholder = painterResource(R.drawable.icon_bookmark),
                 contentScale = ContentScale.Crop,
-                modifier = Modifier.fillMaxSize()
+                modifier = Modifier
+                    .size(25.dp)
+                    .zIndex(2f)
+                    .clickable {
+                        scope.launch { appConfigService.changeArticleFlag(article) }
+                    }
             )
 
             Box(

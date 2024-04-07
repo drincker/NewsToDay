@@ -10,7 +10,13 @@ import org.koin.dsl.module
 
 val profileModule = module {
 
-    single<ProfileNavigator> { navController -> ProfileNavigator(navController.get(), get()) }
+    single<ProfileNavigator> { navController ->
+        ProfileNavigator(
+            navController.get(),
+            get(),
+            get()
+        )
+    }
     single<ProfileNavigation> { ProfileNavigationImpl() }
 
     single<TACNavigator> { navController -> TACNavigator(navController.get()) }

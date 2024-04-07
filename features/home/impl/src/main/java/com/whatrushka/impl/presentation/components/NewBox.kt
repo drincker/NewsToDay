@@ -1,6 +1,8 @@
 package com.whatrushka.impl.presentation.components
 
+import android.util.Log
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -20,6 +22,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.zIndex
 import coil.compose.AsyncImage
 import com.whatrushka.api.models.Article
 import com.whatrushka.core.ui.R
@@ -29,9 +32,12 @@ import com.whatrushka.ui.theme.NewsToDayType
 @Composable
 fun NewBox(
     article: Article,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onPin: (Article) -> Unit,
 ) {
     Box(modifier) {
+        Log.d("m", article.urlToImage.toString())
+
         AsyncImage(
             contentDescription = null,
             model = article.urlToImage,
@@ -59,6 +65,8 @@ fun NewBox(
                 modifier = Modifier
                     .align(Alignment.TopEnd)
                     .size(26.dp)
+                    .zIndex(2f)
+                    .clickable { onPin(article) }
             )
 
             Column(

@@ -5,6 +5,7 @@ import androidx.datastore.core.Serializer
 import androidx.datastore.dataStore
 import com.whatrushka.api.appconfig.AppConfigService
 import com.whatrushka.api.appconfig.models.AppConfig
+import com.whatrushka.api.models.Article
 import com.whatrushka.api.models.static.Category
 import com.whatrushka.api.models.static.Language
 import kotlinx.coroutines.flow.Flow
@@ -21,25 +22,40 @@ class AppConfigServiceImpl(
 
     private suspend fun getAppConfig() = appConfig.first()
 
-    override suspend fun setLanguage(language: Language) {
-        context.appConfigDataStore.updateData {
-            getAppConfig().copy(language = language)
-        }
-    }
-
-    override suspend fun isWelcome() =
-        getAppConfig().isWelcome
+    override suspend fun isWelcome(): Boolean = getAppConfig().isWelcome
 
     override suspend fun setIsWelcome(isWelcome: Boolean) {
         context.appConfigDataStore.updateData {
             getAppConfig().copy(isWelcome = isWelcome)
         }
     }
-    
+
+    override suspend fun getPinned() = getAppConfig().articles
+
+
+    override suspend fun changeArticleFlag(article: Article) {
+        val currentArticles = getAppConfig()
+        if (article in currentArticles.articles) {
+            context.appConfigDataStore.updateData { current ->
+                current.copy(articles = currentArticles.articles - article)
+            }
+        } else {
+            context.appConfigDataStore.updateData { current ->
+                current.copy(articles = currentArticles.articles + article)
+            }
+        }
+    }
+
     override suspend fun getConfiguredLanguage() =
         getAppConfig().language
 
     override fun getLanguages() = Language.list()
+
+    override suspend fun setLanguage(language: Language) {
+        context.appConfigDataStore.updateData {
+            getAppConfig().copy(language = language)
+        }
+    }
 
     override suspend fun setFavoritesCategories(categories: Set<Category>) {
         context.appConfigDataStore.updateData {

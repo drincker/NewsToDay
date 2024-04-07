@@ -1,5 +1,6 @@
 package com.whatrushka.api.appconfig
 
+import com.whatrushka.api.models.Article
 import com.whatrushka.api.models.static.Category
 import com.whatrushka.api.models.static.Language
 
@@ -8,6 +9,10 @@ interface AppConfigService {
     suspend fun isWelcome(): Boolean
 
     suspend fun setIsWelcome(isWelcome: Boolean)
+
+    suspend fun getPinned(): List<Article>
+
+    suspend fun changeArticleFlag(article: Article)
 
     suspend fun setLanguage(language: Language)
 

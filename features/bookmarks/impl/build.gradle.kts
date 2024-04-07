@@ -49,8 +49,9 @@ dependencies {
     implementation(project(":core:domain:newsapi:api"))
     implementation(project(":core:data:api"))
     implementation(project(":features:bookmarks:api"))
+    implementation(project(":features:article:api"))
     implementation(project(":core:ui"))
-    
+
 
     implementation(libs.coil.compose)
     implementation(libs.navigation.compose)

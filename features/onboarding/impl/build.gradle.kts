@@ -48,6 +48,14 @@ android {
 }
 
 dependencies {
+
+    implementation(project(":core:navigation"))
+    implementation(project(":core:data:api"))
+    implementation(project(":features:article:api"))
+    implementation(project(":core:domain:newsapi:api"))
+    implementation(project(":features:home:api"))
+    implementation(project(":features:onboarding:api"))
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -62,16 +70,7 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
-//    implementation(libs.androidx.navigation.runtime.ktx)
-    implementation(project(":core:navigation"))
-    implementation(project(":features:article:api"))
-    implementation(project(":core:domain:newsapi:api"))
-    implementation(project(":core:domain:newsapi:api"))
-    implementation(project(":features:home:api"))
-    implementation(project(":features:home:impl"))
-    implementation(project(":features:home:impl"))
     implementation(libs.navigation.compose)
-    implementation(project(":features:onboarding:api"))
-    implementation(project(":features:onboarding:api"))
+
 
 }

@@ -33,7 +33,6 @@ include(":features:home:di")
 include(":features:onboarding:api")
 include(":features:onboarding:di")
 include(":features:onboarding:impl")
-
 include(":core:ui")
 include(":core:data:api")
 include(":core:data:impl")

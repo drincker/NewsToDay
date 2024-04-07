@@ -29,13 +29,21 @@ sealed class Category(val name: String) {
         )
     }
 
+    @Serializable
     data object All : Category("All")
 
+    @Serializable
     data object Business : Category("business")
+    @Serializable
     data object Entertainment : Category("entertainment")
+    @Serializable
     data object General : Category("general")
+    @Serializable
     data object Health : Category("health")
+    @Serializable
     data object Science : Category("science")
+    @Serializable
     data object Sports : Category("sports")
+    @Serializable
     data object Technology : Category("technology")
 }

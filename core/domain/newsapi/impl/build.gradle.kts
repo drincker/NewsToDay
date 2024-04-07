@@ -21,15 +21,15 @@ android {
 
     buildTypes {
         defaultConfig {
-            buildConfigField("String", "NEWS_API_KEY", "\"b99e497649384d459634680b3a71a0ff\"")
+            buildConfigField("String", "NEWS_API_KEY", "\"0e0b5e6890d8469cbe8d99ff1a5638b5\"")
         }
 
         debug {
-            buildConfigField("String", "NEWS_API_KEY", "\"b99e497649384d459634680b3a71a0ff\"")
+            buildConfigField("String", "NEWS_API_KEY", "\"0e0b5e6890d8469cbe8d99ff1a5638b5\"")
         }
 
         release {
-            buildConfigField("String", "NEWS_API_KEY", "\"b99e497649384d459634680b3a71a0ff\"")
+            buildConfigField("String", "NEWS_API_KEY", "\"0e0b5e6890d8469cbe8d99ff1a5638b5\"")
 
             isMinifyEnabled = false
             proguardFiles(

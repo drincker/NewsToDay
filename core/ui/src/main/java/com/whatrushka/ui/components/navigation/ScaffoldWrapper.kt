@@ -6,11 +6,10 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.currentBackStackEntryAsState
+import com.example.navigation.BookmarksRoute
 import com.whatrushka.api.navigation.HomeRoute
 import com.whatrushka.core.ui.R
 import com.whatrushka.faetures.profile.api.profile.navigatoin.ProfileRoute
@@ -21,13 +20,14 @@ val NavItems = listOf<NavigationItem>(
         route = HomeRoute,
         icon = R.drawable.icon_home_screen
     ),
-//    NavigationItem(
-//        route = CategoriesRoute,
-//        icon = R.drawable.icon_categories_screen
-//    NavigationItem(
-//        route = BookmarksRoute,
-//        icon = R.drawable.icon_bookmarks_screen
-//    ),
+    NavigationItem(
+        route = object : Route("categories") {},
+        icon = R.drawable.icon_categories_screen
+    ),
+    NavigationItem(
+        route = BookmarksRoute,
+        icon = R.drawable.icon_bookmarks_screen
+    ),
     NavigationItem(
         route = ProfileRoute,
         icon = R.drawable.icon_profile_screen
@@ -40,7 +40,7 @@ fun ScaffoldWrapper(
     navController: NavHostController,
     content: @Composable (PaddingValues) -> Unit,
 ) {
-    val navBackStackEntry by navController.currentBackStackEntryAsState()
+//    val navBackStackEntry by navController.currentBackStackEntryAsState()
 
     Scaffold(
         bottomBar = {

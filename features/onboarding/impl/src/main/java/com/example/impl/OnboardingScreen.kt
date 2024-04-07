@@ -22,13 +22,15 @@ import com.example.impl.componets.PageIndicator
 import com.example.impl.componets.SinglePage
 import com.example.impl.navigation.OnboardingNavigator
 import com.exemple.impl.R
+import com.whatrushka.api.appconfig.AppConfigService
 
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun OnboardingScreen(
     navigator: OnboardingNavigator,
-    navController: NavHostController
+    navController: NavHostController,
+    appConfigService: AppConfigService
 ) {
     val pages: List<Page> = listOf(
         Page(
@@ -58,7 +60,7 @@ fun OnboardingScreen(
         )
     )
 
-    val pagerState: PagerState = rememberPagerState (0, pageCount = { pages.size })
+    val pagerState: PagerState = rememberPagerState(0, pageCount = { pages.size })
 
     Column(
         modifier = Modifier.fillMaxSize(),
@@ -68,8 +70,8 @@ fun OnboardingScreen(
         HorizontalPager(
             state = pagerState,
             contentPadding = PaddingValues(horizontal = 32.dp)
-        ) {
-            index -> SinglePage(page = pages[index])
+        ) { index ->
+            SinglePage(page = pages[index])
         }
         Spacer(modifier = Modifier.size(16.dp))
 
@@ -77,7 +79,8 @@ fun OnboardingScreen(
             pagerState = pagerState,
             pages = pages,
             navigator = navigator,
-            navController = navController
+            navController = navController,
+            appConfigService
         )
         Spacer(modifier = Modifier.size(16.dp))
         PageIndicator(

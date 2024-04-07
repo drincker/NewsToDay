@@ -49,6 +49,7 @@ android {
 dependencies {
     implementation(project(":core:domain:newsapi:api"))
     implementation(project(":core:ui"))
+    implementation(project(":core:data:api"))
     implementation(project(":core:navigation"))
     implementation(project(":features:article:api"))
 

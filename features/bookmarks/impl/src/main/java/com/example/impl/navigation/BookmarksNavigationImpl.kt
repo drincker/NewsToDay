@@ -4,23 +4,28 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
-import com.example.navigation.BookMarksNavigation
-import com.example.navigation.BookMarksRoute
+import com.example.impl.presentation.BookmarksScreen
+import com.example.navigation.BookmarksNavigation
+import com.example.navigation.BookmarksRoute
+import com.whatrushka.api.appconfig.AppConfigService
 import com.whatrushka.navigation.Route
-import org.koin.androidx.compose.koinViewModel
 import org.koin.compose.koinInject
+import org.koin.core.parameter.parametersOf
 
-class BookmarksNavigationImpl: BookMarksNavigation {
+class BookmarksNavigationImpl : BookmarksNavigation {
     override val route: Route
-        get() = BookMarksRoute
+        get() = BookmarksRoute
 
     override fun registerGraph(
         navGraphBuilder: NavGraphBuilder,
         navController: NavHostController,
         modifier: Modifier
     ) {
-        navGraphBuilder.composable(route.path){
-            val bookMarksModel:BookMarksNavigation= koinInject()
+        navGraphBuilder.composable(route.path()) {
+            val appConfigService: AppConfigService = koinInject()
+            val bookmarksNavigator: BookmarksNavigator = koinInject { parametersOf(navController) }
+
+            BookmarksScreen(navController, appConfigService, bookmarksNavigator, modifier)
         }
     }
 
